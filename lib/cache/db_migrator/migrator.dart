@@ -1,4 +1,4 @@
-import 'package:khub_mobile/injection_container.dart';
+import 'package:safe_mama/injection_container.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'migration_config.dart';
@@ -33,9 +33,9 @@ class Migrator {
       DatabaseExecutor db, int oldVersion, int newVersion) async {
     LOGGER.d('Executing migrations....');
     assert(oldVersion < newVersion,
-    'The newVersion($newVersion) should always be greater than the oldVersion($oldVersion).');
+        'The newVersion($newVersion) should always be greater than the oldVersion($oldVersion).');
     assert(config.migrationScripts.length == newVersion - 1,
-    'New version ($newVersion) requires exact ${newVersion - config.migrationScripts.length} migrations.');
+        'New version ($newVersion) requires exact ${newVersion - config.migrationScripts.length} migrations.');
 
     if (config.migrationScripts.isNotEmpty) {
       for (var i = oldVersion - 1; i < newVersion - 1; i++) {

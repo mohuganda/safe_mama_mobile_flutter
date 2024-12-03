@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/models/course_model.dart';
-import 'package:khub_mobile/utils/helpers.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/models/course_model.dart';
+import 'package:safe_mama/utils/helpers.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 
 class CourseListItem extends StatelessWidget {
   final CourseModel model;

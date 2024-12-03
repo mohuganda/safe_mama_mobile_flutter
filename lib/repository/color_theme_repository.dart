@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:khub_mobile/cache/preferences_datasource.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/utils/helpers.dart';
+import 'package:safe_mama/cache/preferences_datasource.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/utils/helpers.dart';
 
 abstract class ColorThemeRepository {
   Future<void> saveThemeColors(String primary, String secondary);

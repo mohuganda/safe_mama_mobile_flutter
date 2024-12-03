@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/api/config/config.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/course_model.dart';
-import 'package:khub_mobile/repository/courses_repository.dart';
-import 'package:khub_mobile/ui/providers/safe_notifier.dart';
+import 'package:safe_mama/api/config/env_config.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/course_model.dart';
+import 'package:safe_mama/repository/courses_repository.dart';
+import 'package:safe_mama/ui/providers/safe_notifier.dart';
 
 class CoursesState {
   bool _loading = false;
   String _errorMessage = '';
   List<CourseModel> _courses = [];
-  int _currentPage = Config.startPage;
+  int _currentPage = EnvConfig.startPage;
   int _totalPages = 1;
   bool _isEndOfPage = false;
   bool _isRefreshing = false;
@@ -31,10 +31,10 @@ class CoursesViewModel extends ChangeNotifier with SafeNotifier {
 
   CoursesViewModel(this.coursesRepository);
 
-  Future<void> fetchCourses({int page = Config.startPage}) async {
+  Future<void> fetchCourses({int page = EnvConfig.startPage}) async {
     state._loading = true;
     state._courses = []; // reset
-    state._currentPage = Config.startPage; // reset
+    state._currentPage = EnvConfig.startPage; // reset
     state._isEndOfPage = false; // reset
     safeNotifyListeners();
 

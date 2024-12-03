@@ -1,12 +1,12 @@
-import 'package:khub_mobile/cache/models/community_entity.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/community_model.dart';
-import 'package:khub_mobile/models/country_model.dart';
-import 'package:khub_mobile/models/file_category_model.dart';
-import 'package:khub_mobile/models/file_type_model.dart';
-import 'package:khub_mobile/models/job_model.dart';
-import 'package:khub_mobile/models/preference_model.dart';
-import 'package:khub_mobile/models/resource_model.dart';
+import 'package:safe_mama/cache/models/community_entity.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/community_model.dart';
+import 'package:safe_mama/models/country_model.dart';
+import 'package:safe_mama/models/file_category_model.dart';
+import 'package:safe_mama/models/file_type_model.dart';
+import 'package:safe_mama/models/job_model.dart';
+import 'package:safe_mama/models/preference_model.dart';
+import 'package:safe_mama/models/resource_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'db/app_database.dart';
@@ -95,7 +95,6 @@ class UtilityDatasourceImpl implements UtilityDatasource {
   Future<List<FileCategoryModel>> getCategories() async {
     try {
       final db = await database;
-      // final list = await db.rawQuery('SELECT * FROM ${AppDatabase.fileCategoryTable}');
       final list = await db.query(AppDatabase.fileCategoryTable);
       List<FileCategoryModel> modelList = [];
 

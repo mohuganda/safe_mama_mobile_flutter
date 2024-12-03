@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:html/parser.dart' as html_parser;
 import 'package:html/dom.dart' as dom;
 import 'package:intl/intl.dart';
-import 'package:khub_mobile/injection_container.dart';
+import 'package:safe_mama/injection_container.dart';
 
 class Helpers {
   static String getCurrentDateTime() {
@@ -99,6 +99,23 @@ class Helpers {
         .trim();
 
     return formatted;
+  }
+
+  static Map<String, String> extractNames(String fullName) {
+    // Split the full name into parts
+    List<String> nameParts = fullName.split(" ");
+
+    // Extract the first name
+    String firstName = nameParts.isNotEmpty ? nameParts[0] : "";
+
+    // Combine the remaining parts as the last name
+    String lastName =
+        nameParts.length > 1 ? nameParts.sublist(1).join(" ") : "";
+
+    return {
+      "firstName": firstName,
+      "lastName": lastName,
+    };
   }
 
   static String resolveError(DioException? error) {

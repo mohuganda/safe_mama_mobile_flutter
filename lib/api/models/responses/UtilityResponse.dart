@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/api/models/community/community_api_model.dart';
-import 'package:khub_mobile/api/models/country/country_api_model.dart';
-import 'package:khub_mobile/api/models/fileType/file_type_model.dart';
-import 'package:khub_mobile/api/models/job/job_api_model.dart';
-import 'package:khub_mobile/api/models/preference/preference_api_model.dart';
-import 'package:khub_mobile/api/models/resource/resource_api_model.dart';
+import 'package:safe_mama/api/models/community/community_api_model.dart';
+import 'package:safe_mama/api/models/country/country_api_model.dart';
+import 'package:safe_mama/api/models/fileType/file_type_model.dart';
+import 'package:safe_mama/api/models/job/job_api_model.dart';
+import 'package:safe_mama/api/models/preference/preference_api_model.dart';
+import 'package:safe_mama/api/models/resource/resource_api_model.dart';
 
 part 'UtilityResponse.g.dart';
 

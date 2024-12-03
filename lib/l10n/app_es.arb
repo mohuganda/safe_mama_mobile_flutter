@@ -50,7 +50,7 @@
     "search": "Buscar",
     "recommended": "Recomendado",
     "moreDotted": "Más...",
-    "resourceCategories": "Categorías de recursos",
+    "resourceCategories": "Categorías de datos",
     "topSearches": "Búsquedas principales",
     "home": "Inicio",
     "forums": "Foros",
@@ -169,5 +169,14 @@
     "noJobsFound": "No se encontraron trabajos",
     "noCountriesFound": "No se encontraron países",
     "fieldRequired": "Campo requerido",
-    "invalidPhoneNumber": "Número de teléfono inválido"
+    "invalidPhoneNumber": "Número de teléfono inválido",
+    "noInternetConnection": "No hay conexión a internet",
+    "retry": "Reintentar",
+    "alreadyAmember": "¿Ya es miembro?",
+    "notAmember": "¿No es miembro?",
+    "microsoftSignInFailed": "Inicio de sesión con Microsoft falló",
+    "areYouSureYouWantToJoinThisCommunity": "¿Estás seguro de que quieres unirte a esta comunidad?",
+    "areYouSureYouWantToLeaveThisCommunity": "¿Estás seguro de que quieres dejar esta comunidad?",
+    "completeRegistration": "Completar registro",
+    "viewAll": "Ver todos"
 }

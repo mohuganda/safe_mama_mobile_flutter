@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/repository/forum_repository.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/repository/forum_repository.dart';
 
 class CreateForumState {
   final bool _loading = false;

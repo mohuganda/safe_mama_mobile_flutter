@@ -1,9 +1,9 @@
-import 'package:khub_mobile/api/controllers/api_client.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/cache/theme_datasource.dart';
-import 'package:khub_mobile/models/sub_theme_model.dart';
-import 'package:khub_mobile/models/theme_model.dart';
-import 'package:khub_mobile/repository/api_client_repository.dart';
+import 'package:safe_mama/api/controllers/api_client.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/cache/theme_datasource.dart';
+import 'package:safe_mama/models/sub_theme_model.dart';
+import 'package:safe_mama/models/theme_model.dart';
+import 'package:safe_mama/repository/api_client_repository.dart';
 
 abstract class ThemeRepository {
   Future<DataState<List<ThemeModel>>> fetchThemes();

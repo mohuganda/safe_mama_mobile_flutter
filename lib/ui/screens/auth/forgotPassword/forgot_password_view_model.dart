@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/repository/auth_repository.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/repository/auth_repository.dart';
 
 class ForgotPasswordState {
   bool isSuccess = false;

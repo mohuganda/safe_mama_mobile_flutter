@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/ui/main_view_model.dart';
-import 'package:khub_mobile/ui/screens/auth/auth_view_model.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
+import 'package:safe_mama/ui/main_view_model.dart';
+import 'package:safe_mama/ui/screens/auth/auth_view_model.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
 import 'package:provider/provider.dart';
 
 class MainScaffold extends StatefulWidget {

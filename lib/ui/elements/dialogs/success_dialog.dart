@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/custom_button.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/custom_button.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
 
 class SuccessDialog extends StatelessWidget {
   final String title;

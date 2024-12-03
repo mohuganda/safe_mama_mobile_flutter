@@ -1,7 +1,6 @@
-
-import 'package:khub_mobile/cache/db/cache_database.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/theme_model.dart';
+import 'package:safe_mama/cache/db/cache_database.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/theme_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'db/app_database.dart';
@@ -48,5 +47,4 @@ class ThemeDataSourceImpl implements ThemeDatasource {
       throw Exception('Failed to save theme');
     }
   }
-  
 }

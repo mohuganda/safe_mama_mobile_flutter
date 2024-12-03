@@ -1,4 +1,4 @@
-import 'package:khub_mobile/api/models/user/user_api_model.dart';
+import 'package:safe_mama/api/models/user/user_api_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'ProfileResponse.g.dart';

@@ -1,16 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/api/config/config.dart';
-import 'package:khub_mobile/main.dart';
-import 'package:khub_mobile/ui/elements/dialogs/info_dialog.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/main_view_model.dart';
-import 'package:khub_mobile/ui/screens/account/profile/profile_view_model.dart';
-import 'package:khub_mobile/ui/screens/auth/auth_view_model.dart';
-import 'package:khub_mobile/ui/screens/publication/viewer/web_viewer.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:safe_mama/api/config/env_config.dart';
+import 'package:safe_mama/main.dart';
+import 'package:safe_mama/ui/elements/dialogs/info_dialog.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/main_view_model.dart';
+import 'package:safe_mama/ui/screens/account/profile/profile_view_model.dart';
+import 'package:safe_mama/ui/screens/auth/auth_view_model.dart';
+import 'package:safe_mama/ui/screens/publication/viewer/web_viewer.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 import 'package:provider/provider.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -44,6 +46,7 @@ class _AccountScreenState extends State<AccountScreen> {
         surfaceTintColor: Colors.white,
         shadowColor: MainTheme.appColors.neutralBg,
         elevation: 1,
+        scrolledUnderElevation: 0,
         centerTitle: true,
         title: Text(
           context.localized.settings,
@@ -60,26 +63,26 @@ class _AccountScreenState extends State<AccountScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                _accountItem(context,
-                    routePath: profile,
-                    title: context.localized.myProfile,
-                    icon: Icons.person),
-                _accountItem(context,
-                    routePath: myPublications,
-                    title: context.localized.myPublications,
-                    icon: Icons.list),
-                _accountItem(context,
-                    routePath: myFavorites,
-                    title: context.localized.myFavorites,
-                    icon: Icons.favorite),
+                // _accountItem(context,
+                //     routePath: profile,
+                //     title: context.localized.myProfile,
+                //     icon: Icons.person),
+                // _accountItem(context,
+                //     routePath: myPublications,
+                //     title: context.localized.myPublications,
+                //     icon: Icons.list),
+                // _accountItem(context,
+                //     routePath: myFavorites,
+                //     title: context.localized.myFavorites,
+                //     icon: Icons.favorite),
                 _accountItem(context,
                     routePath: contentRequest,
                     title: context.localized.contentRequest,
                     icon: Icons.note_alt_sharp),
-                _accountItem(context,
-                    routePath: knowledgeHubs,
-                    title: context.localized.knowledgeHubsPortals,
-                    icon: Icons.workspaces),
+                // _accountItem(context,
+                //     routePath: knowledgeHubs,
+                //     title: context.localized.knowledgeHubsPortals,
+                //     icon: Icons.workspaces),
                 Consumer<MainViewModel>(
                   builder: (context, model, child) {
                     return _accountItem(context,
@@ -101,7 +104,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     icon: Icons.question_answer, onClick: () {
                   context.pushNamed(webViewer,
                       extra: WebViewerState(
-                          linkUrl: Config.faqsUrl,
+                          linkUrl: EnvConfig.faqsUrl,
                           title: context.localized.faqs));
                 }),
                 _accountItem(context,
@@ -110,27 +113,27 @@ class _AccountScreenState extends State<AccountScreen> {
                     icon: Icons.lock, onClick: () {
                   context.pushNamed(webViewer,
                       extra: WebViewerState(
-                          linkUrl: Config.privacyPolicyUrl,
+                          linkUrl: EnvConfig.privacyPolicyUrl,
                           title: context.localized.privacyPolicy));
                 }),
                 ySpacer(20),
-                authViewModel.state.isLoggedIn
-                    ? Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          InkWell(
-                              onTap: _showLogoutConfirmation, // Updated
-                              child: Text(
-                                context.localized.logout,
-                                style: TextStyle(
-                                    color: MainTheme.appColors.red400,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w700),
-                              ))
-                        ],
-                      )
-                    : const SizedBox.shrink(),
+                // authViewModel.state.isLoggedIn
+                //     ? Row(
+                //         crossAxisAlignment: CrossAxisAlignment.center,
+                //         mainAxisAlignment: MainAxisAlignment.center,
+                //         children: [
+                //           InkWell(
+                //               onTap: _showLogoutConfirmation, // Updated
+                //               child: Text(
+                //                 context.localized.logout,
+                //                 style: TextStyle(
+                //                     color: MainTheme.appColors.red400,
+                //                     fontSize: 17,
+                //                     fontWeight: FontWeight.w700),
+                //               ))
+                //         ],
+                //       )
+                //     : const SizedBox.shrink(),
               ],
             ),
           )),
@@ -217,7 +220,10 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
   void _logout() async {
+    await FirebaseAuth.instance.signOut(); // Sign out from Firebase
+    await GoogleSignIn().signOut();
     final loggedOut = await authViewModel.logout();
+    // await oauth.logout(); // Sign out from Microsoft
 
     if (loggedOut) {
       authViewModel.checkLoginStatus();

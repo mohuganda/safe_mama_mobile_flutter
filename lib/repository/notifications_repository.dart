@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:khub_mobile/api/controllers/api_client.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/api/models/responses/NotificationsResponse.dart';
-import 'package:khub_mobile/repository/api_client_repository.dart';
-import 'package:khub_mobile/utils/helpers.dart';
+import 'package:safe_mama/api/controllers/api_client.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/api/models/responses/NotificationsResponse.dart';
+import 'package:safe_mama/repository/api_client_repository.dart';
+import 'package:safe_mama/utils/helpers.dart';
 
 abstract class NotificationRepository {
   Future<DataState<NotificationsResponse>> fetchNotifications();

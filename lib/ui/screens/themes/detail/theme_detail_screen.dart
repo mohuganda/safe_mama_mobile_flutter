@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/theme_model.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/components.dart';
-import 'package:khub_mobile/ui/elements/custom_button.dart';
-import 'package:khub_mobile/ui/elements/empty_view_element.dart';
-import 'package:khub_mobile/ui/elements/listItems/publication_item.dart';
-import 'package:khub_mobile/ui/elements/loading_view.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/ui/screens/publication/detail/publication_detail_view_model.dart';
-import 'package:khub_mobile/ui/screens/themes/detail/theme_detail_view_model.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/theme_model.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/components.dart';
+import 'package:safe_mama/ui/elements/custom_button.dart';
+import 'package:safe_mama/ui/elements/empty_view_element.dart';
+import 'package:safe_mama/ui/elements/listItems/publication_item.dart';
+import 'package:safe_mama/ui/elements/loading_view.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/ui/screens/publication/detail/publication_detail_view_model.dart';
+import 'package:safe_mama/ui/screens/themes/detail/theme_detail_view_model.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 import 'package:provider/provider.dart';
 
 class ThemeDetailScreen extends StatefulWidget {

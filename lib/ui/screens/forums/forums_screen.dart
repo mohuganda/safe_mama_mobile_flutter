@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/ui/elements/components.dart';
-import 'package:khub_mobile/ui/elements/empty_view_element.dart';
-import 'package:khub_mobile/ui/elements/listItems/forum_list_item.dart';
-import 'package:khub_mobile/ui/elements/loading_view.dart';
-import 'package:khub_mobile/ui/elements/search_bar.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/models/search_type_enum.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/screens/auth/auth_view_model.dart';
-import 'package:khub_mobile/ui/screens/forums/detail/forum_detail_view_model.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/ui/elements/components.dart';
+import 'package:safe_mama/ui/elements/empty_view_element.dart';
+import 'package:safe_mama/ui/elements/error_view_element.dart';
+import 'package:safe_mama/ui/elements/listItems/forum_list_item.dart';
+import 'package:safe_mama/ui/elements/loading_view.dart';
+import 'package:safe_mama/ui/elements/search_bar.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/models/search_type_enum.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/screens/auth/auth_view_model.dart';
+import 'package:safe_mama/ui/screens/forums/detail/forum_detail_view_model.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 import 'package:provider/provider.dart';
 
 import 'forums_view_model.dart';
@@ -55,27 +56,31 @@ class _ForumsScreenState extends State<ForumsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: appBarText(context, "Forums")),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          final authViewModel =
-              Provider.of<AuthViewModel>(context, listen: false);
-          if (authViewModel.state.isLoggedIn) {
-            context.pushNamed(createForum);
-          } else {
-            context.pushNamed(login);
-          }
-        },
-        tooltip: context.localized.newDiscussion,
-        backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50.0),
-        ),
-        heroTag: 'uniqueTag',
-        elevation: 6.0,
-        child: const Icon(Icons.add),
-      ),
+      appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          title: appBarText(context, "Forums")),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     final authViewModel =
+      //         Provider.of<AuthViewModel>(context, listen: false);
+      //     if (authViewModel.state.isLoggedIn) {
+      //       context.pushNamed(createForum);
+      //     } else {
+      //       context.pushNamed(login);
+      //     }
+      //   },
+      //   tooltip: context.localized.newDiscussion,
+      //   backgroundColor: Theme.of(context).primaryColor,
+      //   foregroundColor: Colors.white,
+      //   shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.circular(50.0),
+      //   ),
+      //   heroTag: 'uniqueTag',
+      //   elevation: 6.0,
+      //   child: const Icon(Icons.add),
+      // ),
       body: Container(
         padding: const EdgeInsets.all(0.0),
         color: MainTheme.appColors.white300,
@@ -88,6 +93,18 @@ class _ForumsScreenState extends State<ForumsScreen> {
                   builder: (context, provider, child) {
                 if (provider.state.loading && provider.state.forums.isEmpty) {
                   return const Center(child: LoadingView());
+                }
+
+                if (provider.state.errorMessage.isNotEmpty) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ErrorViewElement(
+                        errorType: provider.state.errorType,
+                        retry: () => _fetchItems(),
+                      ),
+                    ],
+                  );
                 }
 
                 if (provider.state.forums.isEmpty) {

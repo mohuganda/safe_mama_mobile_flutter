@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/api/models/community/community_api_model.dart';
-import 'package:khub_mobile/cache/models/community_entity.dart';
+import 'package:safe_mama/api/models/community/community_api_model.dart';
+import 'package:safe_mama/cache/models/community_entity.dart';
 
 part 'community_model.g.dart';
 

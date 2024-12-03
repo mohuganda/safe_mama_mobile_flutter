@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/api/models/author/author_model.dart';
-import 'package:khub_mobile/api/models/category/category_model.dart';
-import 'package:khub_mobile/api/models/comment/comment_model.dart';
-import 'package:khub_mobile/api/models/fileType/file_type_model.dart';
-import 'package:khub_mobile/api/models/subTheme/sub_theme_model.dart';
-import 'package:khub_mobile/api/models/theme/theme_model.dart';
+import 'package:safe_mama/api/models/author/author_model.dart';
+import 'package:safe_mama/api/models/category/category_model.dart';
+import 'package:safe_mama/api/models/comment/comment_model.dart';
+import 'package:safe_mama/api/models/fileType/file_type_model.dart';
+import 'package:safe_mama/api/models/subTheme/sub_theme_model.dart';
+import 'package:safe_mama/api/models/theme/theme_model.dart';
 
 part 'publication_model.g.dart';
 
@@ -43,7 +43,6 @@ class PublicationApiModel {
   SubThemeApiModel? sub_theme;
   CategoryApiModel? category;
 
-
   PublicationApiModel(
       this.id,
       this.author_id,
@@ -77,7 +76,8 @@ class PublicationApiModel {
       this.sub_theme,
       this.category);
 
-  factory PublicationApiModel.fromJson(Map<String, dynamic> json) => _$PublicationApiModelFromJson(json);
+  factory PublicationApiModel.fromJson(Map<String, dynamic> json) =>
+      _$PublicationApiModelFromJson(json);
   Map<String, dynamic> toJson() => _$PublicationApiModelToJson(this);
 
   // factory PublicationApiModel.toModel() {
@@ -85,5 +85,4 @@ class PublicationApiModel {
   //      id, this.id ?? -1,
   //      authorId, subThematicAreaId, publication, title, description, publicationCatgoryId, geographicalCoverageId, cover, isActive, visits, createdAt, updatedAt, isFeatured, isVideo, isVersion, fileTypeId, citationLink, userId, isApproved, isRejected, theme, label, value, isFavourite, hasAttachments, fileType, author, subTheme, category)
   // }
-
 }

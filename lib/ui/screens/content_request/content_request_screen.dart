@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/models/country_model.dart';
-import 'package:khub_mobile/models/option_item_model.dart';
-import 'package:khub_mobile/ui/elements/custom_button.dart';
-import 'package:khub_mobile/ui/elements/dialogs/success_dialog.dart';
-import 'package:khub_mobile/ui/elements/dropdowns/custom_drop_down.dart';
-import 'package:khub_mobile/ui/elements/labels.dart';
-import 'package:khub_mobile/ui/elements/loading_view.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/ui/elements/textFields/edit_text_field.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/main_view_model.dart';
-import 'package:khub_mobile/ui/screens/auth/auth_view_model.dart';
-import 'package:khub_mobile/ui/screens/content_request/content_request_view_model.dart';
-import 'package:khub_mobile/utils/alert_utils.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
-import 'package:khub_mobile/utils/validator.dart';
+import 'package:safe_mama/models/country_model.dart';
+import 'package:safe_mama/models/option_item_model.dart';
+import 'package:safe_mama/ui/elements/custom_button.dart';
+import 'package:safe_mama/ui/elements/dialogs/success_dialog.dart';
+import 'package:safe_mama/ui/elements/dropdowns/custom_drop_down.dart';
+import 'package:safe_mama/ui/elements/labels.dart';
+import 'package:safe_mama/ui/elements/loading_view.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/ui/elements/textFields/edit_text_field.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/main_view_model.dart';
+import 'package:safe_mama/ui/screens/auth/auth_view_model.dart';
+import 'package:safe_mama/ui/screens/content_request/content_request_view_model.dart';
+import 'package:safe_mama/utils/alert_utils.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
+import 'package:safe_mama/utils/validator.dart';
 import 'package:provider/provider.dart';
 import 'package:quill_html_editor/quill_html_editor.dart';
 
@@ -307,7 +307,7 @@ class _CreateForumScreenState extends State<ContentRequestScreen> {
       controller: _detailsController,
       isEnabled: true,
       ensureVisible: true,
-      minHeight: 500,
+      minHeight: 600,
       autoFocus: false,
       textStyle: _editorTextStyle,
       hintTextStyle: _hintTextStyle,

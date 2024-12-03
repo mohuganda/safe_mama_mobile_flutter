@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/user_model.dart';
-import 'package:khub_mobile/repository/auth_repository.dart';
-import 'package:khub_mobile/ui/providers/safe_notifier.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/user_model.dart';
+import 'package:safe_mama/repository/auth_repository.dart';
+import 'package:safe_mama/ui/providers/safe_notifier.dart';
 
 class ProfileState {
   bool isSuccess = false;

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/api/models/fileType/file_type_model.dart';
+import 'package:safe_mama/api/models/fileType/file_type_model.dart';
 
 part 'file_type_model.g.dart';
 
@@ -10,10 +10,11 @@ class FileTypeModel {
   String icon;
   int isDownloadable;
 
-  FileTypeModel({required this.id,
-    required this.name,
-    required this.icon,
-    required this.isDownloadable});
+  FileTypeModel(
+      {required this.id,
+      required this.name,
+      required this.icon,
+      required this.isDownloadable});
 
   factory FileTypeModel.fromJson(Map<String, dynamic> json) =>
       _$FileTypeModelFromJson(json);

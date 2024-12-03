@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
 
 class EmptyViewElement extends StatelessWidget {
   final String? message;

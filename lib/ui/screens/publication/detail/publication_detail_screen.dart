@@ -3,23 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/models/file_type_model.dart';
-import 'package:khub_mobile/models/publication_model.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/comment/left_comment_item.dart';
-import 'package:khub_mobile/ui/elements/comment/right_comment_item.dart';
-import 'package:khub_mobile/ui/elements/components.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/ui/elements/textFields/edit_text_field.dart';
-import 'package:khub_mobile/ui/screens/ai/ai_summarize_screen.dart';
-import 'package:khub_mobile/ui/screens/ai/compare/compare_view_model.dart';
-import 'package:khub_mobile/ui/screens/auth/auth_view_model.dart';
-import 'package:khub_mobile/ui/screens/publication/detail/publication_detail_view_model.dart';
-import 'package:khub_mobile/ui/screens/publication/viewer/web_viewer.dart';
-import 'package:khub_mobile/utils/fontawesome_utils.dart';
-import 'package:khub_mobile/utils/helpers.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/models/file_type_model.dart';
+import 'package:safe_mama/models/publication_model.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/comment/left_comment_item.dart';
+import 'package:safe_mama/ui/elements/comment/right_comment_item.dart';
+import 'package:safe_mama/ui/elements/components.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/ui/elements/textFields/edit_text_field.dart';
+import 'package:safe_mama/ui/screens/ai/ai_summarize_screen.dart';
+import 'package:safe_mama/ui/screens/ai/compare/compare_view_model.dart';
+import 'package:safe_mama/ui/screens/auth/auth_view_model.dart';
+import 'package:safe_mama/ui/screens/publication/detail/publication_detail_view_model.dart';
+import 'package:safe_mama/ui/screens/publication/viewer/web_viewer.dart';
+import 'package:safe_mama/utils/fontawesome_utils.dart';
+import 'package:safe_mama/utils/helpers.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -536,7 +536,10 @@ class _PublicationDetailScreenState extends State<PublicationDetailScreen> {
   }
 
   _likePublication(int publicationId) async {
-    await viewModel.addFavorite(publicationId);
+    final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    if (authViewModel.state.isLoggedIn) {
+      await viewModel.addFavorite(publicationId);
+    }
   }
 
   void _showAISummarize(

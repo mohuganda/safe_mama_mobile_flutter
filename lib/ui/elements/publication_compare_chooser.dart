@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/models/publication_model.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
+import 'package:safe_mama/models/publication_model.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
 
 class PublicationCompareChooser extends StatelessWidget {
   final PublicationModel? publicationOne;

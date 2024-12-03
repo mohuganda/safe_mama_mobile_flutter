@@ -2,16 +2,15 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:khub_mobile/api/models/courses/courses_api_model.dart';
-import 'package:khub_mobile/api/models/responses/AiResponse.dart';
-import 'package:khub_mobile/api/models/responses/EventResponse.dart';
-import 'package:khub_mobile/api/models/responses/ForumsResponse.dart';
-import 'package:khub_mobile/api/models/responses/NotificationsResponse.dart';
-import 'package:khub_mobile/api/models/responses/PublicationsResponse.dart';
-import 'package:khub_mobile/api/models/responses/SubThemeResponseModel.dart';
-import 'package:khub_mobile/api/models/responses/ThemesResponse.dart';
-import 'package:khub_mobile/api/models/responses/UtilityResponse.dart';
-import 'package:retrofit/http.dart';
+import 'package:safe_mama/api/models/courses/courses_api_model.dart';
+import 'package:safe_mama/api/models/responses/AiResponse.dart';
+import 'package:safe_mama/api/models/responses/EventResponse.dart';
+import 'package:safe_mama/api/models/responses/ForumsResponse.dart';
+import 'package:safe_mama/api/models/responses/NotificationsResponse.dart';
+import 'package:safe_mama/api/models/responses/PublicationsResponse.dart';
+import 'package:safe_mama/api/models/responses/SubThemeResponseModel.dart';
+import 'package:safe_mama/api/models/responses/ThemesResponse.dart';
+import 'package:safe_mama/api/models/responses/UtilityResponse.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_client.g.dart';

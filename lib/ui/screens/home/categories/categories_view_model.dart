@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/cache/utility_datasource.dart';
-import 'package:khub_mobile/models/resource_model.dart';
-import 'package:khub_mobile/repository/utility_repository.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/cache/utility_datasource.dart';
+import 'package:safe_mama/models/resource_model.dart';
+import 'package:safe_mama/repository/utility_repository.dart';
 
 class CategoriesState {
   List<ResourceTypeModel> categories = [];

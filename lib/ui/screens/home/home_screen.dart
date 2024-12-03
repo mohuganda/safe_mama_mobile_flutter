@@ -1,25 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/ui/elements/labels.dart';
-import 'package:khub_mobile/ui/elements/not_logged_in_banner.dart';
-import 'package:khub_mobile/ui/elements/notification_icon_with_count.dart';
-import 'package:khub_mobile/ui/elements/search_bar.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/models/search_type_enum.dart';
-import 'package:khub_mobile/ui/main_view_model.dart';
-import 'package:khub_mobile/ui/screens/auth/auth_view_model.dart';
-import 'package:khub_mobile/ui/screens/events/events_list.dart';
-import 'package:khub_mobile/ui/screens/events/events_view_model.dart';
-import 'package:khub_mobile/ui/screens/home/categories/categories_screen.dart';
-import 'package:khub_mobile/ui/screens/home/recommended/recommended_publications.dart';
-import 'package:khub_mobile/ui/screens/home/top_searches/top_searches.dart';
-import 'package:khub_mobile/ui/screens/publication/publications_list_screen.dart';
-import 'package:khub_mobile/ui/screens/themes/theme_list.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/screens/themes/theme_view_model.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/ui/elements/labels.dart';
+import 'package:safe_mama/ui/elements/not_logged_in_banner.dart';
+import 'package:safe_mama/ui/elements/notification_icon_with_count.dart';
+import 'package:safe_mama/ui/elements/search_bar.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/models/search_type_enum.dart';
+import 'package:safe_mama/ui/main_view_model.dart';
+import 'package:safe_mama/ui/screens/account/profile/profile_view_model.dart';
+import 'package:safe_mama/ui/screens/auth/auth_view_model.dart';
+import 'package:safe_mama/ui/screens/events/events_list.dart';
+import 'package:safe_mama/ui/screens/events/events_view_model.dart';
+import 'package:safe_mama/ui/screens/home/categories/categories_screen.dart';
+import 'package:safe_mama/ui/screens/home/recommended/recommended_publications.dart';
+import 'package:safe_mama/ui/screens/home/top_searches/top_searches.dart';
+import 'package:safe_mama/ui/screens/publication/publications_list_screen.dart';
+import 'package:safe_mama/ui/screens/themes/theme_list.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/screens/themes/theme_view_model.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -41,17 +42,22 @@ class _HomeScreenState extends State<HomeScreen> {
     authViewModel = Provider.of<AuthViewModel>(context, listen: false);
     themeViewModel = Provider.of<ThemeViewModel>(context, listen: false);
 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final screenSize = MediaQuery.of(context).size;
+      final shortestSide = screenSize.shortestSide;
+      final isTablet = shortestSide >= 600;
+      _getThemes(isTablet);
+    });
+
     authViewModel.checkLoginStatus();
-    _getThemes();
-    // Download utilities
     _getUtilities();
     _getCurrentUser();
     _getUnreadNotificationCount();
     super.initState();
   }
 
-  Future<void> _getThemes() async {
-    await themeViewModel.fetchThemes();
+  Future<void> _getThemes(bool isTablet) async {
+    await themeViewModel.fetchThemes(isTablet);
     if (mounted) {
       setState(() {});
     }
@@ -80,28 +86,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth >= 600; // Material Design tablet breakpoint
+
     return Scaffold(
       appBar: _appBar(context),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          final authViewModel =
-              Provider.of<AuthViewModel>(context, listen: false);
-          if (authViewModel.state.isLoggedIn) {
-            context.pushNamed(publish);
-          } else {
-            context.pushNamed(login);
-          }
-        },
-        tooltip: context.localized.newPublication,
-        backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50.0),
-        ),
-        heroTag: 'uniqueTag',
-        elevation: 6.0,
-        child: const Icon(Icons.add),
-      ),
+      backgroundColor: Colors.white,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     final authViewModel =
+      //         Provider.of<AuthViewModel>(context, listen: false);
+      //     if (authViewModel.state.isLoggedIn) {
+      //       context.pushNamed(publish);
+      //     } else {
+      //       context.pushNamed(login);
+      //     }
+      //   },
+      //   tooltip: context.localized.newPublication,
+      //   backgroundColor: Theme.of(context).primaryColor,
+      //   foregroundColor: Colors.white,
+      //   shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.circular(50.0),
+      //   ),
+      //   heroTag: 'uniqueTag',
+      //   elevation: 6.0,
+      //   child: const Icon(Icons.add),
+      // ),
       body: Container(
         height: double.infinity,
         padding: const EdgeInsets.all(0.0),
@@ -110,7 +120,10 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             const AppSearchBar(searchType: SearchType.publication),
             ySpacer(4.0),
-            const Expanded(child: EventsList()),
+            Container(
+                constraints: const BoxConstraints(
+                    minHeight: 10, minWidth: double.infinity, maxHeight: 240),
+                child: const EventsList()),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: homeLabel(
@@ -122,15 +135,17 @@ class _HomeScreenState extends State<HomeScreen> {
             ySpacer(14),
             Container(
                 padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                constraints: const BoxConstraints(
-                    minHeight: 50, minWidth: double.infinity, maxHeight: 70),
+                constraints: BoxConstraints(
+                    minHeight: 50,
+                    minWidth: double.infinity,
+                    maxHeight: isTablet ? 160 : 110),
                 child: const ThemeList()),
             ySpacer(16.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: homeLabel(context,
                   title: context.localized.recommended,
-                  actionLabel: context.localized.moreDotted, onClick: () {
+                  actionLabel: context.localized.viewAll, onClick: () {
                 context.pushNamed(publicationList,
                     extra: PublicationListScreenState(
                         listType: 1, title: context.localized.recommended));
@@ -156,12 +171,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       minHeight: 40, minWidth: 50, maxHeight: 80),
                   child: const CategoriesScreen()),
             ),
+            // Consumer<AuthViewModel>(builder: (context, provider, child) {
+            //   return provider.state.isLoggedIn
+            //       ? const SizedBox.shrink()
+            //       : const NotLoggedInBanner();
+            // }),
             Padding(
                 padding:
                     const EdgeInsets.only(left: 14.0, right: 14.0, top: 16),
                 child: homeLabel(context,
                     title: context.localized.topSearches,
-                    actionLabel: context.localized.moreDotted, onClick: () {
+                    actionLabel: context.localized.viewAll, onClick: () {
                   context.pushNamed(publicationList,
                       extra: PublicationListScreenState(
                           listType: 2, title: context.localized.topSearches));
@@ -183,6 +203,9 @@ class _HomeScreenState extends State<HomeScreen> {
     const logoHeight = 50.0;
 
     return AppBar(
+      backgroundColor: Colors.white,
+      elevation: 0,
+      scrolledUnderElevation: 0,
       title: Consumer<AuthViewModel>(builder: (context, provider, child) {
         return Row(
           children: [
@@ -227,45 +250,46 @@ class _HomeScreenState extends State<HomeScreen> {
       }),
       surfaceTintColor: Colors.white,
       shadowColor: MainTheme.appColors.neutralBg,
-      elevation: 1,
       actions: [
-        Consumer<AuthViewModel>(builder: (context, provider, child) {
-          final userImage = provider.state.currentUser?.photo ?? '';
+        // Consumer<AuthViewModel>(builder: (context, provider, child) {
+        //   final userImage = provider.state.currentUser?.photo ?? '';
 
-          return InkWell(
-            onTap: () {
-              context.pushNamed(profile);
-            },
-            child: SizedBox(
-              width: 30,
-              height: 30,
-              child: ClipOval(
-                  child: userImage.isNotEmpty
-                      ? CachedNetworkImage(
-                          imageUrl: userImage,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          placeholder: (context, url) => SizedBox(
-                            height: 5,
-                            width: 5,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  Theme.of(context).primaryColor),
-                            ),
-                          ),
-                          errorWidget: (context, url, error) =>
-                              Image.asset('assets/images/default_user.jpg'),
-                        )
-                      : Image.asset('assets/images/default_user.jpg')),
-            ),
-          );
-        }),
+        //   return InkWell(
+        //     onTap: () {
+        //       Provider.of<ProfileViewModel>(context, listen: false)
+        //           .getCurrentUser();
+        //       context.pushNamed(profile);
+        //     },
+        //     child: SizedBox(
+        //       width: 30,
+        //       height: 30,
+        //       child: ClipOval(
+        //           child: userImage.isNotEmpty
+        //               ? CachedNetworkImage(
+        //                   imageUrl: userImage,
+        //                   imageBuilder: (context, imageProvider) => Container(
+        //                     decoration: BoxDecoration(
+        //                       image: DecorationImage(
+        //                         image: imageProvider,
+        //                         fit: BoxFit.cover,
+        //                       ),
+        //                     ),
+        //                   ),
+        //                   placeholder: (context, url) => SizedBox(
+        //                     height: 5,
+        //                     width: 5,
+        //                     child: CircularProgressIndicator(
+        //                       valueColor: AlwaysStoppedAnimation<Color>(
+        //                           Theme.of(context).primaryColor),
+        //                     ),
+        //                   ),
+        //                   errorWidget: (context, url, error) =>
+        //                       Image.asset('assets/images/default_user.jpg'),
+        //                 )
+        //               : Image.asset('assets/images/default_user.jpg')),
+        //     ),
+        //   );
+        // }),
         xSpacer(6),
         Consumer<MainViewModel>(
           builder: (context, provider, child) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/components.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/components.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PublicationPdfViewer extends StatefulWidget {

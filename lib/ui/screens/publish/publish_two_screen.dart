@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/models/option_item_model.dart';
-import 'package:khub_mobile/models/resource_model.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/custom_button.dart';
-import 'package:khub_mobile/ui/elements/dropdowns/custom_drop_down.dart';
-import 'package:khub_mobile/ui/elements/labels.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/ui/elements/textFields/edit_text_field.dart';
-import 'package:khub_mobile/ui/main_view_model.dart';
-import 'package:khub_mobile/ui/screens/publish/publish_view_model.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/validator.dart';
+import 'package:safe_mama/models/option_item_model.dart';
+import 'package:safe_mama/models/resource_model.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/custom_button.dart';
+import 'package:safe_mama/ui/elements/dropdowns/custom_drop_down.dart';
+import 'package:safe_mama/ui/elements/labels.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/ui/elements/textFields/edit_text_field.dart';
+import 'package:safe_mama/ui/main_view_model.dart';
+import 'package:safe_mama/ui/screens/publish/publish_view_model.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/validator.dart';
 import 'package:provider/provider.dart';
 
 class PublishTwoScreen extends StatefulWidget {

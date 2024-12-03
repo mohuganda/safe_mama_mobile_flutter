@@ -3,45 +3,46 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:khub_mobile/cache/preferences_datasource.dart';
-import 'package:khub_mobile/firebase_options.dart';
-import 'package:khub_mobile/providers/locale_provider.dart';
-import 'package:khub_mobile/repository/color_theme_repository.dart';
-import 'package:khub_mobile/ui/elements/countries/countries_search_view_model.dart';
-import 'package:khub_mobile/ui/elements/jobs/jobs_view_model.dart';
-import 'package:khub_mobile/ui/elements/loading_view.dart';
-import 'package:khub_mobile/ui/elements/preferences/preferences_search_view_model.dart';
-import 'package:khub_mobile/ui/main_view_model.dart';
-import 'package:khub_mobile/ui/screens/account/knowledgehubs/knowledge_hub_view_model.dart';
-import 'package:khub_mobile/ui/screens/account/profile/profile_view_model.dart';
-import 'package:khub_mobile/ui/screens/ai/ai_view_model.dart';
-import 'package:khub_mobile/ui/screens/ai/compare/compare_view_model.dart';
-import 'package:khub_mobile/ui/screens/auth/auth_view_model.dart';
-import 'package:khub_mobile/ui/screens/auth/forgotPassword/forgot_password_view_model.dart';
-import 'package:khub_mobile/ui/screens/auth/login/login_view_model.dart';
-import 'package:khub_mobile/ui/screens/auth/signup/signup_view_model.dart';
-import 'package:khub_mobile/ui/screens/communities/communities_view_model.dart';
-import 'package:khub_mobile/ui/screens/communities/detail/community_detail_view_model.dart';
-import 'package:khub_mobile/ui/screens/content_request/content_request_view_model.dart';
-import 'package:khub_mobile/ui/screens/courses/courses_view_model.dart';
-import 'package:khub_mobile/ui/screens/events/events_view_model.dart';
-import 'package:khub_mobile/ui/screens/forums/create/create_forum_view_model.dart';
-import 'package:khub_mobile/ui/screens/forums/detail/forum_detail_view_model.dart';
-import 'package:khub_mobile/ui/screens/forums/forums_view_model.dart';
-import 'package:khub_mobile/ui/screens/home/categories/categories_view_model.dart';
-import 'package:khub_mobile/ui/screens/home/home_view_model.dart';
-import 'package:khub_mobile/ui/screens/home/recommended/recommended_publication_view_model.dart';
-import 'package:khub_mobile/ui/screens/home/top_searches/top_searches_view_model.dart';
-import 'package:khub_mobile/ui/screens/notifications/notifications_view_model.dart';
-import 'package:khub_mobile/ui/screens/publication/my_favorites/my_favorites_view_model.dart';
-import 'package:khub_mobile/ui/screens/publication/my_publications/my_publications_view_model.dart';
-import 'package:khub_mobile/ui/screens/publication/publication_list_view_model.dart';
-import 'package:khub_mobile/ui/screens/publish/publish_view_model.dart';
-import 'package:khub_mobile/ui/screens/search/search_view_model.dart';
-import 'package:khub_mobile/ui/screens/themes/detail/theme_detail_view_model.dart';
-import 'package:khub_mobile/ui/screens/themes/theme_view_model.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/utils/navigation/router_config.dart';
+import 'package:safe_mama/cache/preferences_datasource.dart';
+import 'package:safe_mama/firebase_options.dart';
+import 'package:safe_mama/providers/locale_provider.dart';
+import 'package:safe_mama/repository/color_theme_repository.dart';
+import 'package:safe_mama/services/microsoft_auth_service.dart';
+import 'package:safe_mama/ui/elements/countries/countries_search_view_model.dart';
+import 'package:safe_mama/ui/elements/jobs/jobs_view_model.dart';
+import 'package:safe_mama/ui/elements/loading_view.dart';
+import 'package:safe_mama/ui/elements/preferences/preferences_search_view_model.dart';
+import 'package:safe_mama/ui/main_view_model.dart';
+import 'package:safe_mama/ui/screens/account/knowledgehubs/knowledge_hub_view_model.dart';
+import 'package:safe_mama/ui/screens/account/profile/profile_view_model.dart';
+import 'package:safe_mama/ui/screens/ai/ai_view_model.dart';
+import 'package:safe_mama/ui/screens/ai/compare/compare_view_model.dart';
+import 'package:safe_mama/ui/screens/auth/auth_view_model.dart';
+import 'package:safe_mama/ui/screens/auth/forgotPassword/forgot_password_view_model.dart';
+import 'package:safe_mama/ui/screens/auth/login/login_view_model.dart';
+import 'package:safe_mama/ui/screens/auth/signup/signup_view_model.dart';
+import 'package:safe_mama/ui/screens/communities/communities_view_model.dart';
+import 'package:safe_mama/ui/screens/communities/detail/community_detail_view_model.dart';
+import 'package:safe_mama/ui/screens/content_request/content_request_view_model.dart';
+import 'package:safe_mama/ui/screens/courses/courses_view_model.dart';
+import 'package:safe_mama/ui/screens/events/events_view_model.dart';
+import 'package:safe_mama/ui/screens/forums/create/create_forum_view_model.dart';
+import 'package:safe_mama/ui/screens/forums/detail/forum_detail_view_model.dart';
+import 'package:safe_mama/ui/screens/forums/forums_view_model.dart';
+import 'package:safe_mama/ui/screens/home/categories/categories_view_model.dart';
+import 'package:safe_mama/ui/screens/home/home_view_model.dart';
+import 'package:safe_mama/ui/screens/home/recommended/recommended_publication_view_model.dart';
+import 'package:safe_mama/ui/screens/home/top_searches/top_searches_view_model.dart';
+import 'package:safe_mama/ui/screens/notifications/notifications_view_model.dart';
+import 'package:safe_mama/ui/screens/publication/my_favorites/my_favorites_view_model.dart';
+import 'package:safe_mama/ui/screens/publication/my_publications/my_publications_view_model.dart';
+import 'package:safe_mama/ui/screens/publication/publication_list_view_model.dart';
+import 'package:safe_mama/ui/screens/publish/publish_view_model.dart';
+import 'package:safe_mama/ui/screens/search/search_view_model.dart';
+import 'package:safe_mama/ui/screens/themes/detail/theme_detail_view_model.dart';
+import 'package:safe_mama/ui/screens/themes/theme_view_model.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/utils/navigation/router_config.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -98,7 +99,7 @@ late AndroidNotificationChannel channel;
 
 Future<void> setupFlutterNotifications() async {
   channel = const AndroidNotificationChannel(
-    'khub_mobile_channel',
+    'safe_mama_channel',
     'KHub Mobile Notifications',
     description: 'This channel is used for important notifications.',
     importance: Importance.high,
@@ -108,6 +109,101 @@ Future<void> setupFlutterNotifications() async {
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          IOSFlutterLocalNotificationsPlugin>()
+      ?.requestPermissions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+
+  const initializationSettingsAndroid =
+      AndroidInitializationSettings('@drawable/ic_notification');
+  const initializationSettingsIOS = DarwinInitializationSettings(
+    requestAlertPermission: true,
+    requestBadgePermission: true,
+    requestSoundPermission: true,
+  );
+  const initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+    iOS: initializationSettingsIOS,
+  );
+
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+}
+
+Future<void> _initializeFirebaseMessaging() async {
+  try {
+    await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+    // For apple platforms, ensure the APNS token is available before making any FCM plugin API calls
+    final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+    if (apnsToken != null) {
+      // APNS token is available, make FCM plugin API requests...
+      LOGGER.d('APNS: $apnsToken');
+    }
+
+    await FirebaseMessaging.instance.setAutoInitEnabled(true);
+
+    // Register app to general topic
+    try {
+      await FirebaseMessaging.instance.subscribeToTopic('GENERAL');
+    } catch (e) {
+      FirebaseCrashlytics.instance.recordError({
+        'exception': e,
+        'context': context,
+        'information': 'Error subscribing to topic',
+      }, null);
+      LOGGER.e('Error subscribing to topic: $e');
+    }
+
+    // Get the token
+    try {
+      String? fcmToken = await FirebaseMessaging.instance.getToken();
+      LOGGER.d('Initial FCM Token: $fcmToken');
+      await getIt<PreferencesDatasource>()
+          .saveString(PreferencesDatasource.fcmTokenKey, fcmToken ?? '');
+    } catch (e) {
+      FirebaseCrashlytics.instance.recordError({
+        'exception': e,
+        'context': context,
+        'information': 'Error getting FCM token',
+      }, null);
+
+      LOGGER.e('Error getting FCM token: $e');
+    }
+
+    FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) async {
+      LOGGER.d('FCM Token refreshed: $fcmToken');
+      await getIt<PreferencesDatasource>()
+          .saveString(PreferencesDatasource.fcmTokenKey, fcmToken);
+    });
+
+    // Set up foreground message handler
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      // LOGGER.d('A new message data: ${jsonEncode(message)}');
+
+      if (message.notification != null) {
+        // LOGGER.d('Message also contained a notification: ${jsonEncode(message.notification)}');
+      }
+      showFlutterNotification(message);
+    });
+  } catch (e) {
+    LOGGER.e('Firebase Messaging initialization failed: $e');
+    // Continue even if Firebase Messaging fails
+  }
 }
 
 void main() async {
@@ -117,92 +213,26 @@ void main() async {
 
   await di.init();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  await setupFlutterNotifications();
-
-  // Pass all uncaught "fatal" errors from the framework to Crashlytics
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-
   // Initialize LocaleProvider and wait for language to load
   LocaleProvider localeProvider = LocaleProvider();
   await localeProvider.getCachedLanguage();
 
-  // Request permission for notifications
-  await FirebaseMessaging.instance.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    sound: true,
-  );
-
-  // Set up background message handler
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
-  // For apple platforms, ensure the APNS token is available before making any FCM plugin API calls
-  final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
-  if (apnsToken != null) {
-    // APNS token is available, make FCM plugin API requests...
-  }
-
-  await FirebaseMessaging.instance.setAutoInitEnabled(true);
-
-  // Register app to general topic
   try {
-    await FirebaseMessaging.instance.subscribeToTopic('GENERAL');
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    setupFlutterNotifications();
+
+    // Pass all uncaught "fatal" errors from the framework to Crashlytics
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+    _initializeFirebaseMessaging();
   } catch (e) {
-    FirebaseCrashlytics.instance.recordError({
-      'exception': e,
-      'context': context,
-      'information': 'Error subscribing to topic',
-    }, null);
-    LOGGER.e('Error subscribing to topic: $e');
+    LOGGER.e(e);
   }
 
-  // Get the token
-  try {
-    String? fcmToken = await FirebaseMessaging.instance.getToken();
-    LOGGER.d('Initial FCM Token: $fcmToken');
-    await getIt<PreferencesDatasource>()
-        .saveString(PreferencesDatasource.fcmTokenKey, fcmToken ?? '');
-  } catch (e) {
-    FirebaseCrashlytics.instance.recordError({
-      'exception': e,
-      'context': context,
-      'information': 'Error getting FCM token',
-    }, null);
-
-    LOGGER.e('Error getting FCM token: $e');
-  }
-
-  // Listen to token refresh
-  FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) async {
-    LOGGER.d('FCM Token refreshed: $fcmToken');
-    await getIt<PreferencesDatasource>()
-        .saveString(PreferencesDatasource.fcmTokenKey, fcmToken);
-  }).onError((err) {
-    FirebaseCrashlytics.instance.recordError({
-      'exception': err,
-      'context': context,
-      'information': 'Error getting FCM token',
-    }, null);
-    LOGGER.e('Error getting FCM token: $err');
-  });
-
-  // Set up foreground message handler
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    // LOGGER.d('A new message data: ${jsonEncode(message)}');
-
-    if (message.notification != null) {
-      // LOGGER.d('Message also contained a notification: ${jsonEncode(message.notification)}');
-    }
-    showFlutterNotification(message);
-  });
+  // Initialize Microsoft Auth Service
+  MicrosoftAuthService().initialize(getIt<GlobalKey<NavigatorState>>());
 
   runApp(RestartWidget(localeProvider: localeProvider));
 }
@@ -291,13 +321,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<HomeViewModel>(
             create: (_) => HomeViewModel(getIt(), getIt())),
         ChangeNotifierProvider<RecommendedPublicationViewModel>(
-            create: (_) => RecommendedPublicationViewModel(getIt())),
+            create: (_) =>
+                RecommendedPublicationViewModel(getIt(), getIt(), getIt())),
         ChangeNotifierProvider<SearchViewModel>(
-            create: (_) => SearchViewModel(getIt(), getIt())),
+            create: (_) => SearchViewModel(getIt(), getIt(), getIt())),
         ChangeNotifierProvider<ThemeViewModel>(
             create: (_) => ThemeViewModel(getIt())),
         ChangeNotifierProvider<ForumsViewModel>(
-            create: (_) => ForumsViewModel(getIt())),
+            create: (_) => ForumsViewModel(getIt(), getIt())),
         ChangeNotifierProvider<ForumDetailViewModel>(
             create: (_) => ForumDetailViewModel(getIt(), getIt())),
         ChangeNotifierProvider<NotificationsViewModel>(
@@ -313,7 +344,7 @@ class MyApp extends StatelessWidget {
                 themeRepository: getIt(),
                 utilityDatasource: getIt())),
         ChangeNotifierProvider<PublicationListViewModel>(
-            create: (_) => PublicationListViewModel(getIt())),
+            create: (_) => PublicationListViewModel(getIt(), getIt())),
         ChangeNotifierProvider<LoginViewModel>(
             create: (_) => LoginViewModel(getIt(), getIt(), getIt())),
         ChangeNotifierProvider<SignupViewModel>(
@@ -327,7 +358,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<CreateForumViewModel>(
             create: (_) => CreateForumViewModel(forumRepository: getIt())),
         ChangeNotifierProvider<TopSearchesViewModel>(
-            create: (_) => TopSearchesViewModel(getIt())),
+            create: (_) => TopSearchesViewModel(getIt(), getIt(), getIt())),
         ChangeNotifierProvider<AiViewModel>(
             create: (_) => AiViewModel(getIt(), getIt())),
         ChangeNotifierProvider<MyFavoritesViewModel>(
@@ -337,11 +368,16 @@ class MyApp extends StatelessWidget {
                 ContentRequestViewModel(publicationRepository: getIt())),
         ChangeNotifierProvider<CommunitiesViewModel>(
             create: (_) => CommunitiesViewModel(
-                communitiesRepository: getIt(), authRepository: getIt())),
+                communitiesRepository: getIt(),
+                authRepository: getIt(),
+                connectionRepository: getIt())),
         ChangeNotifierProvider<CommunityDetailViewModel>(
             create: (_) => CommunityDetailViewModel(getIt(), getIt())),
         ChangeNotifierProvider<EventsViewModel>(
-            create: (_) => EventsViewModel(eventRepository: getIt())),
+            create: (_) => EventsViewModel(
+                eventRepository: getIt(),
+                eventsDatasource: getIt(),
+                connectionRepository: getIt())),
         ChangeNotifierProvider<KnowledgeHubViewModel>(
             create: (_) => KnowledgeHubViewModel(
                 utilityDatasource: getIt(),
@@ -367,7 +403,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<LocaleProvider>(
         builder: (context, localeProvider, child) => MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: 'SafeMama',
+          title: 'KHub',
           locale: localeProvider.locale,
           theme: themeData, // MainTheme.defaultTheme,
           localizationsDelegates: AppLocalizations.localizationsDelegates,

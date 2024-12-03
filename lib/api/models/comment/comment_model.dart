@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/api/models/author/author_model.dart';
+import 'package:safe_mama/api/models/author/author_model.dart';
 
 part 'comment_model.g.dart';
 

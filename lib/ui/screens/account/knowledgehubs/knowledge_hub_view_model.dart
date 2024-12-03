@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/api/config/config.dart';
-import 'package:khub_mobile/cache/preferences_datasource.dart';
-import 'package:khub_mobile/cache/utility_datasource.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/repository/auth_repository.dart';
-import 'package:khub_mobile/ui/providers/safe_notifier.dart';
+import 'package:safe_mama/api/config/env_config.dart';
+import 'package:safe_mama/cache/preferences_datasource.dart';
+import 'package:safe_mama/cache/utility_datasource.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/repository/auth_repository.dart';
+import 'package:safe_mama/ui/providers/safe_notifier.dart';
 
 class KnowledgeHubModel {
   int id;
@@ -59,7 +59,7 @@ class KnowledgeHubViewModel extends ChangeNotifier with SafeNotifier {
             KnowledgeHubModel(
                 id: 10000,
                 name: 'Africa CDC',
-                baseUrl: Config().baseUrl,
+                baseUrl: EnvConfig.baseUrl,
                 isActive: true));
 
         final savedActiveHubId = preferencesDatasource

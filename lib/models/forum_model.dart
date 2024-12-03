@@ -1,5 +1,5 @@
-import 'package:khub_mobile/api/models/forums/forum_model.dart';
-import 'package:khub_mobile/models/user_model.dart';
+import 'package:safe_mama/api/models/forums/forum_model.dart';
+import 'package:safe_mama/models/user_model.dart';
 
 import 'comment_model.dart';
 

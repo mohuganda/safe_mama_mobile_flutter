@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/course_model.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/components.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/utils/helpers.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/course_model.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/components.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/utils/helpers.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CourseDetailScreen extends StatefulWidget {

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/ui/elements/textFields/otp_edit_text.dart';
+import 'package:safe_mama/ui/elements/textFields/otp_edit_text.dart';
 
 class OtpGroupField extends StatefulWidget {
   final int fieldCount;
   final bool? obscureText;
   final Function(String) onChange;
-  const OtpGroupField({super.key, required this.fieldCount, required this.onChange, this.obscureText});
+  const OtpGroupField(
+      {super.key,
+      required this.fieldCount,
+      required this.onChange,
+      this.obscureText});
 
   @override
   State<OtpGroupField> createState() => _OtpGroupFieldState();
@@ -17,7 +21,8 @@ class _OtpGroupFieldState extends State<OtpGroupField> {
   @override
   void initState() {
     super.initState();
-    _controllers = List.generate(widget.fieldCount, (_) => TextEditingController());
+    _controllers =
+        List.generate(widget.fieldCount, (_) => TextEditingController());
 
     // Add listeners to each controller to listen for text changes
     for (var controller in _controllers) {

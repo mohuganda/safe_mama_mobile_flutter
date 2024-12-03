@@ -1,5 +1,5 @@
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/user_model.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'db/app_database.dart';

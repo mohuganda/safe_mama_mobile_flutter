@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/ui/elements/empty_view_element.dart';
-import 'package:khub_mobile/ui/elements/listItems/publication_item.dart';
-import 'package:khub_mobile/ui/elements/loading_view.dart';
-import 'package:khub_mobile/ui/screens/auth/auth_view_model.dart';
-import 'package:khub_mobile/ui/screens/publication/detail/publication_detail_view_model.dart';
-import 'package:khub_mobile/ui/screens/publication/publication_list_view_model.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/ui/elements/empty_view_element.dart';
+import 'package:safe_mama/ui/elements/error_view_element.dart';
+import 'package:safe_mama/ui/elements/listItems/publication_item.dart';
+import 'package:safe_mama/ui/elements/loading_view.dart';
+import 'package:safe_mama/ui/screens/auth/auth_view_model.dart';
+import 'package:safe_mama/ui/screens/publication/detail/publication_detail_view_model.dart';
+import 'package:safe_mama/ui/screens/publication/publication_list_view_model.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 import 'package:provider/provider.dart';
 
 class PublicationListScreenState {
@@ -53,6 +54,13 @@ class _PublicationsListScreenState extends State<PublicationsListScreen> {
       if (mounted) {
         setState(() {});
       }
+    }
+  }
+
+  _likePublication(int publicationId) async {
+    final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    if (authViewModel.state.isLoggedIn) {
+      await viewModel.addFavorite(publicationId);
     }
   }
 
@@ -110,6 +118,18 @@ class _PublicationsListScreenState extends State<PublicationsListScreen> {
                 return const Center(child: LoadingView());
               }
 
+              if (provider.state.errorMessage.isNotEmpty) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ErrorViewElement(
+                      errorType: provider.state.errorType,
+                      retry: () => _fetchPublications(),
+                    ),
+                  ],
+                );
+              }
+
               if (provider.state.publications.isEmpty) {
                 return const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -138,6 +158,9 @@ class _PublicationsListScreenState extends State<PublicationsListScreen> {
                     isVerticalItem: true,
                     borderRadius: 0,
                     model: item,
+                    onLike: () {
+                      _likePublication(item.id);
+                    },
                     onClick: () {
                       Provider.of<PublicationDetailViewModel>(context,
                               listen: false)

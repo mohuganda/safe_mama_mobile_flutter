@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/models/publication_model.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/utils/helpers.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/models/publication_model.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/utils/helpers.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class PublicationListItem extends StatelessWidget {

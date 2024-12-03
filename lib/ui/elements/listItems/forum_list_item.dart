@@ -1,12 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:khub_mobile/ui/elements/loading_view.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/models/forum_model.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/screens/auth/auth_view_model.dart';
-import 'package:khub_mobile/utils/helpers.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/models/forum_model.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/screens/auth/auth_view_model.dart';
+import 'package:safe_mama/utils/helpers.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -88,7 +87,15 @@ class ForumListItem extends StatelessWidget {
                 ),
                 ySpacer(8),
                 _coverPhoto(context),
-                ySpacer(4),
+                Html(data: model.title, style: {
+                  'body': Style(
+                      fontWeight: FontWeight.w500,
+                      fontSize: FontSize(14),
+                      maxLines: 2,
+                      textOverflow: TextOverflow.ellipsis,
+                      padding: HtmlPaddings.zero)
+                }),
+                // ySpacer(4),
                 Html(
                   data: Helpers.truncateHtmlText(model.description, 5),
                   style: {

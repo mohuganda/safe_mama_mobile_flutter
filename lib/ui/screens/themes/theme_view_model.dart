@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/sub_theme_model.dart';
-import 'package:khub_mobile/models/theme_model.dart';
-import 'package:khub_mobile/repository/theme_repository.dart';
-import 'package:khub_mobile/utils/helpers.dart';
-import 'package:khub_mobile/ui/providers/safe_notifier.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/sub_theme_model.dart';
+import 'package:safe_mama/models/theme_model.dart';
+import 'package:safe_mama/repository/theme_repository.dart';
+import 'package:safe_mama/utils/helpers.dart';
+import 'package:safe_mama/ui/providers/safe_notifier.dart';
 
 class ThemesState {
   bool _loading = false;
@@ -32,7 +32,7 @@ class ThemeViewModel extends ChangeNotifier with SafeNotifier {
 
   ThemeViewModel(this.themeRepository);
 
-  Future<void> fetchThemes() async {
+  Future<void> fetchThemes(bool isTablet) async {
     state._loading = true;
     safeNotifyListeners();
 
@@ -42,9 +42,13 @@ class ThemeViewModel extends ChangeNotifier with SafeNotifier {
       if (result is DataSuccess) {
         final list = result.data!;
         state._themes = list;
-        final actionThemes = Helpers.pickNItems(list, 3);
+        final actionThemes = Helpers.pickNItems(list, isTablet ? 4 : 2);
+        LOGGER.d('actionThemes: ${actionThemes.length}');
         actionThemes.add(ThemeModel(
-            id: 100000, description: '', icon: 'fa-users', displayIndex: 1));
+            id: 100000,
+            description: 'More',
+            icon: 'fa-users',
+            displayIndex: 1));
         state._actionThemes = actionThemes;
       }
 

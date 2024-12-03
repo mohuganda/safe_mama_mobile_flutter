@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/components.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/components.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewerState {

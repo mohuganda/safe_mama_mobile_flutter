@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:khub_mobile/api/config/config.dart';
-import 'package:khub_mobile/api/controllers/api_client.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/api/models/responses/UtilityResponse.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/repository/api_client_repository.dart';
-import 'package:khub_mobile/utils/helpers.dart';
+import 'package:safe_mama/api/config/env_config.dart';
+import 'package:safe_mama/api/controllers/api_client.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/api/models/responses/UtilityResponse.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/repository/api_client_repository.dart';
+import 'package:safe_mama/utils/helpers.dart';
 
 abstract class CommunitiesRepository {
   Future<DataState<CommunityResponse>> fetchCommunities({
@@ -34,8 +34,8 @@ class CommunitiesRepositoryImpl implements CommunitiesRepository {
   }) async {
     try {
       Map<String, dynamic> request = {
-        'page': page ?? Config.startPage,
-        'page_size': pageSize ?? Config.pageSize
+        'page': page ?? EnvConfig.startPage,
+        'page_size': pageSize ?? EnvConfig.pageSize
       };
       if (term != null) request['term'] = term;
 

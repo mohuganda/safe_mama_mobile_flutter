@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/api/models/theme/theme_model.dart';
+import 'package:safe_mama/api/models/theme/theme_model.dart';
 
 part 'ThemesResponse.g.dart';
 
@@ -10,7 +10,8 @@ class ThemesResponse {
 
   ThemesResponse(this.status, this.data);
 
-  factory ThemesResponse.fromJson(Map<String, dynamic> json) => _$ThemesResponseFromJson(json);
+  factory ThemesResponse.fromJson(Map<String, dynamic> json) =>
+      _$ThemesResponseFromJson(json);
   Map<String, dynamic> toJson() => _$ThemesResponseToJson(this);
 }
 
@@ -20,6 +21,7 @@ class ThemeDataResponse {
 
   ThemeDataResponse(this.data);
 
-  factory ThemeDataResponse.fromJson(Map<String, dynamic> json) => _$ThemeDataResponseFromJson(json);
+  factory ThemeDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$ThemeDataResponseFromJson(json);
   Map<String, dynamic> toJson() => _$ThemeDataResponseToJson(this);
 }

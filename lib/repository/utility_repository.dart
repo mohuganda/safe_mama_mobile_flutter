@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:khub_mobile/api/controllers/api_client.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/models/country_model.dart';
-import 'package:khub_mobile/models/file_category_model.dart';
-import 'package:khub_mobile/models/file_type_model.dart';
-import 'package:khub_mobile/models/community_model.dart';
-import 'package:khub_mobile/models/preference_model.dart';
-import 'package:khub_mobile/models/job_model.dart';
-import 'package:khub_mobile/models/resource_model.dart';
-import 'package:khub_mobile/repository/api_client_repository.dart';
-import 'package:khub_mobile/utils/helpers.dart';
+import 'package:safe_mama/api/controllers/api_client.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/models/country_model.dart';
+import 'package:safe_mama/models/file_category_model.dart';
+import 'package:safe_mama/models/file_type_model.dart';
+import 'package:safe_mama/models/community_model.dart';
+import 'package:safe_mama/models/preference_model.dart';
+import 'package:safe_mama/models/job_model.dart';
+import 'package:safe_mama/models/resource_model.dart';
+import 'package:safe_mama/repository/api_client_repository.dart';
+import 'package:safe_mama/utils/helpers.dart';
 
 abstract class UtilityRepository {
   Future<DataState<List<FileTypeModel>>> fetchFileTypes();

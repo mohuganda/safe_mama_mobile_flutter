@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/models/community_model.dart';
-import 'package:khub_mobile/ui/elements/components.dart';
-import 'package:khub_mobile/ui/elements/empty_view_element.dart';
-import 'package:khub_mobile/ui/elements/listItems/community_list_items.dart';
-import 'package:khub_mobile/ui/elements/loading_view.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/screens/communities/communities_view_model.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
+import 'package:safe_mama/models/community_model.dart';
+import 'package:safe_mama/ui/elements/components.dart';
+import 'package:safe_mama/ui/elements/empty_view_element.dart';
+import 'package:safe_mama/ui/elements/listItems/community_list_items.dart';
+import 'package:safe_mama/ui/elements/loading_view.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/screens/communities/communities_view_model.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
 import 'package:provider/provider.dart';
 
 class CommunitiesScreen extends StatefulWidget {
@@ -53,6 +53,8 @@ class _CommunitiesScreenState extends State<CommunitiesScreen> {
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
+          elevation: 0,
+          scrolledUnderElevation: 0,
           title: appBarText(context, context.localized.communities)),
       body: Container(
         padding: const EdgeInsets.all(0.0),

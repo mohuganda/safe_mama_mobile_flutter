@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
+import 'package:safe_mama/themes/main_theme.dart';
 
 class PasswordEditText extends StatefulWidget {
-  const PasswordEditText({super.key, required this.textLabel,  required this.textController, required this.textHint,});
+  const PasswordEditText({
+    super.key,
+    required this.textLabel,
+    required this.textController,
+    required this.textHint,
+  });
 
   final String textLabel;
   final String textHint;
   final TextEditingController textController;
 
-
   @override
-  State<PasswordEditText> createState() => _PasswordEditTextState(textHint, textLabel);
+  State<PasswordEditText> createState() =>
+      _PasswordEditTextState(textHint, textLabel);
 }
 
 class _PasswordEditTextState extends State<PasswordEditText> {
@@ -30,14 +35,11 @@ class _PasswordEditTextState extends State<PasswordEditText> {
         validator: (value) {
           if (value!.isEmpty) {
             return "Field Required";
-          }
-          else if(value.length < 2){
+          } else if (value.length < 2) {
             return "Password too short";
-          }
-          else if(value.length > 4){
+          } else if (value.length > 4) {
             return "Password must be 4 characters";
-          }
-          else {
+          } else {
             return null;
           }
         },

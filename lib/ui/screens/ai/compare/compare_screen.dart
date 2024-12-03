@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/models/search_type_enum.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/components.dart';
-import 'package:khub_mobile/ui/elements/custom_button.dart';
-import 'package:khub_mobile/ui/elements/labels.dart';
-import 'package:khub_mobile/ui/elements/publication_compare_chooser.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/ui/elements/textFields/edit_text_field.dart';
-import 'package:khub_mobile/ui/screens/ai/compare/compare_view_model.dart';
-import 'package:khub_mobile/ui/screens/search/search_screen.dart';
-import 'package:khub_mobile/utils/alert_utils.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/models/search_type_enum.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/components.dart';
+import 'package:safe_mama/ui/elements/custom_button.dart';
+import 'package:safe_mama/ui/elements/labels.dart';
+import 'package:safe_mama/ui/elements/publication_compare_chooser.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/ui/elements/textFields/edit_text_field.dart';
+import 'package:safe_mama/ui/screens/ai/compare/compare_view_model.dart';
+import 'package:safe_mama/ui/screens/search/search_screen.dart';
+import 'package:safe_mama/utils/alert_utils.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -215,26 +215,25 @@ class _CompareScreenState extends State<CompareScreen> {
   }
 
   void _submit() async {
-    setState(() {
-      _isLoading = true;
-      _isLongLoading = false;
-      _showAdditionalInstructions = false;
-    });
-
-    _loadingTimer = Timer(const Duration(seconds: 6), () {
-      if (mounted) {
-        setState(() {
-          _isLongLoading = true;
-        });
-      }
-    });
-
     if (mounted) {
       final compareViewModel =
           Provider.of<CompareViewModel>(context, listen: false);
 
       if (compareViewModel.state.publicationOne != null &&
           compareViewModel.state.publicationTwo != null) {
+        setState(() {
+          _isLoading = true;
+          _isLongLoading = false;
+          _showAdditionalInstructions = false;
+        });
+
+        _loadingTimer = Timer(const Duration(seconds: 6), () {
+          if (mounted) {
+            setState(() {
+              _isLongLoading = true;
+            });
+          }
+        });
         final state = await compareViewModel.comparePublications(
             prompt: _promptController.text);
 

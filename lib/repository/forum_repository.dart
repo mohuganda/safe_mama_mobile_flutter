@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:khub_mobile/api/config/config.dart';
-import 'package:khub_mobile/api/controllers/api_client.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/api/models/responses/ForumsResponse.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/repository/api_client_repository.dart';
-import 'package:khub_mobile/utils/helpers.dart';
+import 'package:safe_mama/api/config/env_config.dart';
+import 'package:safe_mama/api/controllers/api_client.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/api/models/responses/ForumsResponse.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/repository/api_client_repository.dart';
+import 'package:safe_mama/utils/helpers.dart';
 
 abstract class ForumRepository {
   Future<DataState<ForumsResponse>> fetchForums({
@@ -47,8 +47,8 @@ class ForumRepositoryImpl implements ForumRepository {
       // final ForumsResponse response = ForumsResponse.fromJson(result);
 
       Map<String, dynamic> request = {
-        'page': page ?? Config.startPage,
-        'page_size': pageSize ?? Config.pageSize
+        'page': page ?? EnvConfig.startPage,
+        'page_size': pageSize ?? EnvConfig.pageSize
       };
 
       if (term != null) request['term'] = term;

@@ -1,8 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/api/models/comment/comment_model.dart';
-import 'package:khub_mobile/api/models/user/user_api_model.dart';
+import 'package:safe_mama/api/models/comment/comment_model.dart';
+import 'package:safe_mama/api/models/user/user_api_model.dart';
 
 part 'forum_model.g.dart';
 

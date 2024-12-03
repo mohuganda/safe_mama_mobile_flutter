@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
+import 'package:safe_mama/themes/main_theme.dart';
 
 class NotificationIconCount extends StatelessWidget {
   final IconData icon;

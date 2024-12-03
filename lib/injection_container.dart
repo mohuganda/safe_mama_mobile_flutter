@@ -1,20 +1,24 @@
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
-import 'package:khub_mobile/cache/preferences_datasource.dart';
-import 'package:khub_mobile/cache/theme_datasource.dart';
-import 'package:khub_mobile/cache/user_datasource.dart';
-import 'package:khub_mobile/cache/utility_datasource.dart';
-import 'package:khub_mobile/repository/api_client_repository.dart';
-import 'package:khub_mobile/repository/auth_repository.dart';
-import 'package:khub_mobile/repository/color_theme_repository.dart';
-import 'package:khub_mobile/repository/communities_repository.dart';
-import 'package:khub_mobile/repository/courses_repository.dart';
-import 'package:khub_mobile/repository/event_repository.dart';
-import 'package:khub_mobile/repository/forum_repository.dart';
-import 'package:khub_mobile/repository/notifications_repository.dart';
-import 'package:khub_mobile/repository/publication_repository.dart';
-import 'package:khub_mobile/repository/theme_repository.dart';
-import 'package:khub_mobile/repository/utility_repository.dart';
+import 'package:safe_mama/cache/events_datasource.dart';
+import 'package:safe_mama/cache/preferences_datasource.dart';
+import 'package:safe_mama/cache/publication_datasource.dart';
+import 'package:safe_mama/cache/theme_datasource.dart';
+import 'package:safe_mama/cache/user_datasource.dart';
+import 'package:safe_mama/cache/utility_datasource.dart';
+import 'package:safe_mama/repository/api_client_repository.dart';
+import 'package:safe_mama/repository/auth_repository.dart';
+import 'package:safe_mama/repository/color_theme_repository.dart';
+import 'package:safe_mama/repository/communities_repository.dart';
+import 'package:safe_mama/repository/connection_repository.dart';
+import 'package:safe_mama/repository/courses_repository.dart';
+import 'package:safe_mama/repository/event_repository.dart';
+import 'package:safe_mama/repository/forum_repository.dart';
+import 'package:safe_mama/repository/notifications_repository.dart';
+import 'package:safe_mama/repository/publication_repository.dart';
+import 'package:safe_mama/repository/theme_repository.dart';
+import 'package:safe_mama/repository/utility_repository.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,21 +54,28 @@ Future<void> init() async {
       () => CoursesRepositoryImpl(getIt()));
   getIt.registerLazySingleton<ApiClientRepository>(
       () => ApiClientRepositoryImpl(preferencesDatasource: getIt()));
+  getIt.registerLazySingleton<ConnectionRepository>(
+      () => ConnectionRepositoryImpl());
 
   // Data sources
   getIt.registerLazySingleton<UtilityDatasource>(
       () => UtilityDatasourceImpl(preferences: getIt()));
   getIt.registerLazySingleton<UserDatasource>(() => UserDatasourceImpl());
   getIt.registerLazySingleton<ThemeDatasource>(() => ThemeDataSourceImpl());
-
+  getIt.registerLazySingleton<EventsDatasource>(() => EventsDataSourceImpl());
   getIt.registerLazySingleton<PreferencesDatasource>(
       () => PreferencesDatasourceImpl(preferences: getIt()));
+  getIt.registerLazySingleton<PublicationDataSource>(
+      () => PublicationDataSourceImpl());
 
 // External Libs
   final sharedPreferences = await SharedPreferences.getInstance();
   getIt.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
   getIt.registerLazySingleton(() => http.Client());
   getIt.registerLazySingleton(() => Logger());
+
+  getIt.registerLazySingleton<GlobalKey<NavigatorState>>(
+      () => GlobalKey<NavigatorState>());
 
   // API
   // final baseUrl = await _getBaseUrl();

@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/models/publication_model.dart';
-import 'package:khub_mobile/ui/elements/listItems/forum_list_item.dart';
-import 'package:khub_mobile/ui/elements/listItems/publication_item.dart';
-import 'package:khub_mobile/ui/elements/loading_view.dart';
-import 'package:khub_mobile/ui/screens/ai/compare/compare_view_model.dart';
-import 'package:khub_mobile/ui/screens/forums/detail/forum_detail_view_model.dart';
-import 'package:khub_mobile/ui/screens/publication/detail/publication_detail_view_model.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
+import 'package:safe_mama/models/publication_model.dart';
+import 'package:safe_mama/ui/elements/error_view_element.dart';
+import 'package:safe_mama/ui/elements/listItems/forum_list_item.dart';
+import 'package:safe_mama/ui/elements/listItems/publication_item.dart';
+import 'package:safe_mama/ui/elements/loading_view.dart';
+import 'package:safe_mama/ui/screens/ai/compare/compare_view_model.dart';
+import 'package:safe_mama/ui/screens/forums/detail/forum_detail_view_model.dart';
+import 'package:safe_mama/ui/screens/publication/detail/publication_detail_view_model.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
 import 'package:rxdart/rxdart.dart';
 import 'dart:async';
-import 'package:khub_mobile/ui/elements/empty_view_element.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/ui/elements/textFields/edit_text_field.dart';
-import 'package:khub_mobile/models/search_type_enum.dart';
-import 'package:khub_mobile/ui/screens/search/search_view_model.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/ui/elements/empty_view_element.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/ui/elements/textFields/edit_text_field.dart';
+import 'package:safe_mama/models/search_type_enum.dart';
+import 'package:safe_mama/ui/screens/search/search_view_model.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreenState {
@@ -136,6 +137,21 @@ class _SearchScreenState extends State<SearchScreen> {
                               provider.state.forums.isEmpty)) {
                         return const Center(child: LoadingView());
                       }
+                    }
+
+                    if (provider.state.errorMessage.isNotEmpty) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ErrorViewElement(
+                            errorType: provider.state.errorType,
+                            retry: () => widget.searchState.searchType ==
+                                    SearchType.publication
+                                ? _fetchPublications()
+                                : _fetchForums(),
+                          ),
+                        ],
+                      );
                     }
 
                     if (widget.searchState.searchType ==

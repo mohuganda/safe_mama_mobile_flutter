@@ -50,7 +50,7 @@
     "search": "Tafuta",
     "recommended": "Pendekezo",
     "moreDotted": "Zaidi...",
-    "resourceCategories": "Aina za rasilimali",
+    "resourceCategories": "Kategoria za rasilimali",
     "topSearches": "Utafutaji maarufu",
     "home": "Nyumbani",
     "forums": "Majukwaa",
@@ -169,5 +169,14 @@
     "noJobsFound": "Hakuna ofaa zilizopatikana",
     "noCountriesFound": "Hakuna nchi zilizopatikana",
     "fieldRequired": "Kichwa cha kutafuta",
-    "invalidPhoneNumber": "Namba ya simu siwezi"
+    "invalidPhoneNumber": "Namba ya simu siwezi",
+    "noInternetConnection": "No internet connection",
+    "retry": "Reintentar",
+    "alreadyAmember": "Yaweza kuingia?",
+    "notAmember": "Hakuna kuingia?",
+    "microsoftSignInFailed": "Kuingia na Microsoft imetokea",
+    "areYouSureYouWantToJoinThisCommunity": "Hakuna kuingia?",
+    "areYouSureYouWantToLeaveThisCommunity": "Hakuna kuingia?",
+    "completeRegistration": "Kumbuka kuingia",
+    "viewAll": "Tazama zote"
 }

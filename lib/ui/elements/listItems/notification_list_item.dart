@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/models/notification_model.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/utils/helpers.dart';
+import 'package:safe_mama/models/notification_model.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/utils/helpers.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class NotificationListItem extends StatelessWidget {

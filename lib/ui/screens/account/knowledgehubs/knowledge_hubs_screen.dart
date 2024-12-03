@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/main.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/dialogs/info_dialog.dart';
-import 'package:khub_mobile/ui/screens/account/knowledgehubs/knowledge_hub_view_model.dart';
-import 'package:khub_mobile/ui/screens/auth/auth_view_model.dart';
+import 'package:safe_mama/main.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/dialogs/info_dialog.dart';
+import 'package:safe_mama/ui/screens/account/knowledgehubs/knowledge_hub_view_model.dart';
+import 'package:safe_mama/ui/screens/auth/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
 class KnowledgeHubsScreen extends StatefulWidget {

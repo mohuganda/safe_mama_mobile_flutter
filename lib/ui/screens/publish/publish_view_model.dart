@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/cache/utility_datasource.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/option_item_model.dart';
-import 'package:khub_mobile/repository/auth_repository.dart';
-import 'package:khub_mobile/repository/publication_repository.dart';
-import 'package:khub_mobile/repository/theme_repository.dart';
-import 'package:khub_mobile/ui/providers/safe_notifier.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/cache/utility_datasource.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/option_item_model.dart';
+import 'package:safe_mama/repository/auth_repository.dart';
+import 'package:safe_mama/repository/publication_repository.dart';
+import 'package:safe_mama/repository/theme_repository.dart';
+import 'package:safe_mama/ui/providers/safe_notifier.dart';
 
 class PublicationRequest {
   File? cover;

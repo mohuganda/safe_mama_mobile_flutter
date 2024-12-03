@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/injection_container.dart';
+import 'package:safe_mama/injection_container.dart';
 
 class LifecycleEventHandler extends WidgetsBindingObserver {
   final AsyncCallback? resumeCallBack;

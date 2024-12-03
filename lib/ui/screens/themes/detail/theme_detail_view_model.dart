@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/api/config/config.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/publication_model.dart';
-import 'package:khub_mobile/models/sub_theme_model.dart';
-import 'package:khub_mobile/repository/publication_repository.dart';
-import 'package:khub_mobile/repository/theme_repository.dart';
-import 'package:khub_mobile/ui/providers/safe_notifier.dart';
+import 'package:safe_mama/api/config/env_config.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/publication_model.dart';
+import 'package:safe_mama/models/sub_theme_model.dart';
+import 'package:safe_mama/repository/publication_repository.dart';
+import 'package:safe_mama/repository/theme_repository.dart';
+import 'package:safe_mama/ui/providers/safe_notifier.dart';
 
 class ThemeDetailState {
   bool _loading = false;
   bool _loadingMore = false;
   bool _loadingSubThemes = false;
   String _errorMessage = '';
-  int _currentPage = Config.startPage;
+  int _currentPage = EnvConfig.startPage;
   int _totalPages = 1;
   List<PublicationModel> _publications = [];
   List<SubThemeModel> _subThemes = [];
@@ -38,12 +38,12 @@ class ThemeDetailViewModel extends ChangeNotifier with SafeNotifier {
 
   Future<void> fetchPublications(
       {required int themeId,
-      int page = Config.startPage,
+      int page = EnvConfig.startPage,
       bool? loadMore = false,
       int? subThemeId}) async {
     if (loadMore != null && !loadMore) {
       state._publications = []; // reset
-      state._currentPage = Config.startPage; // reset
+      state._currentPage = EnvConfig.startPage; // reset
       state._isEndOfPage = false; // reset
     }
 

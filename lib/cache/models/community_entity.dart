@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/models/community_model.dart';
+import 'package:safe_mama/models/community_model.dart';
 
 part 'community_entity.g.dart';
 

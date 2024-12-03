@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/cache/utility_datasource.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/preference_model.dart';
-import 'package:khub_mobile/ui/providers/safe_notifier.dart';
+import 'package:safe_mama/cache/utility_datasource.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/preference_model.dart';
+import 'package:safe_mama/ui/providers/safe_notifier.dart';
 
 class PreferencesSearchState {
   List<PreferenceModel> _list = [];

@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/api/config/config.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/community_model.dart';
-import 'package:khub_mobile/models/user_model.dart';
-import 'package:khub_mobile/repository/auth_repository.dart';
-import 'package:khub_mobile/repository/communities_repository.dart';
-import 'package:khub_mobile/ui/providers/safe_notifier.dart';
+import 'package:safe_mama/api/config/env_config.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/community_model.dart';
+import 'package:safe_mama/models/user_model.dart';
+import 'package:safe_mama/repository/auth_repository.dart';
+import 'package:safe_mama/repository/communities_repository.dart';
+import 'package:safe_mama/repository/connection_repository.dart';
+import 'package:safe_mama/ui/providers/safe_notifier.dart';
 
 class CommunityState {
   bool _loading = false;
   final bool _isSuccess = false;
   String _errorMessage = '';
   List<CommunityModel> _communities = [];
-  int _currentPage = Config.startPage;
+  int _currentPage = EnvConfig.startPage;
   int _totalPages = 1;
   bool _isEndOfPage = false;
+  int _errorType = 2;
 
   bool get loading => _loading;
   bool get isSuccess => _isSuccess;
@@ -24,6 +26,7 @@ class CommunityState {
   int get currentPage => _currentPage;
   int get totalPages => _totalPages;
   bool get isEndOfPage => _isEndOfPage;
+  int get errorType => _errorType;
 }
 
 class CommunitiesViewModel extends ChangeNotifier with SafeNotifier {
@@ -32,20 +35,30 @@ class CommunitiesViewModel extends ChangeNotifier with SafeNotifier {
 
   final CommunitiesRepository communitiesRepository;
   final AuthRepository authRepository;
+  final ConnectionRepository connectionRepository;
 
   CommunitiesViewModel(
-      {required this.communitiesRepository, required this.authRepository});
+      {required this.communitiesRepository,
+      required this.authRepository,
+      required this.connectionRepository});
 
   Future<void> fetchCommunities() async {
     state._loading = true;
     state._communities = []; // reset
-    state._currentPage = Config.startPage; // reset
+    state._currentPage = EnvConfig.startPage; // reset
     state._isEndOfPage = false; // reset
     safeNotifyListeners();
 
-    final result = await communitiesRepository.fetchCommunities();
-
     try {
+      final isConnected = await connectionRepository.checkInternetStatus();
+      state._errorMessage = isConnected ? '' : 'No internet connection';
+      if (!isConnected) {
+        state._errorType = 1;
+        safeNotifyListeners();
+        return;
+      }
+      final result = await communitiesRepository.fetchCommunities();
+
       if (result is DataSuccess) {
         state._loading = false;
         state._totalPages = result.data?.total ?? 1;

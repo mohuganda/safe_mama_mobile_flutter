@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(
@@ -31,6 +31,8 @@ class CustomButton extends StatelessWidget {
           style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(
                   containerColor ?? Theme.of(context).primaryColor),
+              overlayColor: WidgetStateProperty.all(
+                  Theme.of(context).primaryColor.withOpacity(0.1)),
               shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0),

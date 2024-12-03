@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/api/models/job/job_api_model.dart';
+import 'package:safe_mama/api/models/job/job_api_model.dart';
 part 'job_model.g.dart';
 
 @JsonSerializable()
@@ -28,7 +28,6 @@ class JobModel {
         jobId: model.job_id ?? -1,
         classificationId: model.classification_id ?? -1,
         iscoId: model.isco_id ?? -1,
-      name: model.name ?? ''
-    );
+        name: model.name ?? '');
   }
 }

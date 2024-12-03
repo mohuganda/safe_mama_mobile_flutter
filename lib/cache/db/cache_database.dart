@@ -1,5 +1,5 @@
-import 'package:khub_mobile/cache/db/app_database.dart';
-import 'package:khub_mobile/injection_container.dart';
+import 'package:safe_mama/cache/db/app_database.dart';
+import 'package:safe_mama/injection_container.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CacheDatabase {

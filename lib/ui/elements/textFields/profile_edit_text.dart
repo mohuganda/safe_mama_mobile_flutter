@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
+import 'package:safe_mama/themes/main_theme.dart';
 
 class ProfileEditText extends StatelessWidget {
   const ProfileEditText({
@@ -14,7 +14,6 @@ class ProfileEditText extends StatelessWidget {
   final String? textValidatorType; //validator types: email, password
   final TextEditingController textController;
   final bool isEditable;
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +37,7 @@ class ProfileEditText extends StatelessWidget {
   String? validateValue(String? value) {
     if (value == "emailValidator") {
       return emailValidator(textController.text);
-    }  else {
+    } else {
       return null;
     }
   }

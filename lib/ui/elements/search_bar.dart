@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/models/search_type_enum.dart';
-import 'package:khub_mobile/ui/screens/search/search_screen.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/models/search_type_enum.dart';
+import 'package:safe_mama/ui/screens/search/search_screen.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 
 class AppSearchBar extends StatelessWidget {
   final SearchType searchType;

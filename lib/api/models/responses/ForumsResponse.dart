@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/api/models/forums/forum_model.dart';
+import 'package:safe_mama/api/models/forums/forum_model.dart';
 
 part 'ForumsResponse.g.dart';
 

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/custom_button.dart';
-import 'package:khub_mobile/ui/elements/labels.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/ui/elements/textFields/edit_text_field.dart';
-import 'package:khub_mobile/ui/screens/auth/forgotPassword/forgot_password_view_model.dart';
-import 'package:khub_mobile/ui/screens/success/success_screen.dart';
-import 'package:khub_mobile/utils/alert_utils.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
-import 'package:khub_mobile/utils/validator.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/custom_button.dart';
+import 'package:safe_mama/ui/elements/labels.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/ui/elements/textFields/edit_text_field.dart';
+import 'package:safe_mama/ui/screens/auth/forgotPassword/forgot_password_view_model.dart';
+import 'package:safe_mama/ui/screens/success/success_screen.dart';
+import 'package:safe_mama/utils/alert_utils.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
+import 'package:safe_mama/utils/validator.dart';
 import 'package:provider/provider.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {

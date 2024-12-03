@@ -1,42 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/models/course_model.dart';
-import 'package:khub_mobile/models/event_model.dart';
-import 'package:khub_mobile/models/theme_model.dart';
-import 'package:khub_mobile/ui/screens/account/account_screen.dart';
-import 'package:khub_mobile/ui/screens/account/knowledgehubs/knowledge_hubs_screen.dart';
-import 'package:khub_mobile/ui/screens/account/language_selection_screen.dart';
-import 'package:khub_mobile/ui/screens/account/profile/profile_screen.dart';
-import 'package:khub_mobile/ui/screens/ai/compare/compare_screen.dart';
-import 'package:khub_mobile/ui/screens/auth/forgotPassword/forgot_password_screen.dart';
-import 'package:khub_mobile/ui/screens/auth/login/login_screen.dart';
-import 'package:khub_mobile/ui/screens/auth/signup/signup_screen.dart';
-import 'package:khub_mobile/ui/screens/communities/communities_screen.dart';
-import 'package:khub_mobile/ui/screens/communities/detail/community_detail_screen.dart';
-import 'package:khub_mobile/ui/screens/content_request/content_request_screen.dart';
-import 'package:khub_mobile/ui/screens/courses/course_detail.dart';
-import 'package:khub_mobile/ui/screens/courses/courses_screen.dart';
-import 'package:khub_mobile/ui/screens/events/event_detail_screen.dart';
-import 'package:khub_mobile/ui/screens/forums/create/create_forum_screen.dart';
-import 'package:khub_mobile/ui/screens/forums/detail/forum_detail_screen.dart';
-import 'package:khub_mobile/ui/screens/forums/forums_screen.dart';
-import 'package:khub_mobile/ui/screens/forums/forums_view_model.dart';
-import 'package:khub_mobile/ui/screens/home/home_screen.dart';
-import 'package:khub_mobile/ui/screens/main/main_scaffold.dart';
-import 'package:khub_mobile/ui/screens/notifications/notifications_screen.dart';
-import 'package:khub_mobile/ui/screens/onboarding/splash_screen.dart';
-import 'package:khub_mobile/ui/screens/publication/my_favorites/my_favorites_screen.dart';
-import 'package:khub_mobile/ui/screens/publication/my_publications/my_publications_screen.dart';
-import 'package:khub_mobile/ui/screens/publication/detail/publication_detail_screen.dart';
-import 'package:khub_mobile/ui/screens/publication/publications_list_screen.dart';
-import 'package:khub_mobile/ui/screens/publication/viewer/publication_pdf_viewer.dart';
-import 'package:khub_mobile/ui/screens/publication/viewer/web_viewer.dart';
-import 'package:khub_mobile/ui/screens/publish/create_publication_screen.dart';
-import 'package:khub_mobile/ui/screens/search/search_screen.dart';
-import 'package:khub_mobile/ui/screens/success/success_screen.dart';
-import 'package:khub_mobile/ui/screens/themes/detail/theme_detail_screen.dart';
-import 'package:khub_mobile/utils/navigation/go_route_observer.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/course_model.dart';
+import 'package:safe_mama/models/event_model.dart';
+import 'package:safe_mama/models/theme_model.dart';
+import 'package:safe_mama/ui/screens/account/account_screen.dart';
+import 'package:safe_mama/ui/screens/account/knowledgehubs/knowledge_hubs_screen.dart';
+import 'package:safe_mama/ui/screens/account/language_selection_screen.dart';
+import 'package:safe_mama/ui/screens/account/profile/profile_screen.dart';
+import 'package:safe_mama/ui/screens/ai/compare/compare_screen.dart';
+import 'package:safe_mama/ui/screens/auth/forgotPassword/forgot_password_screen.dart';
+import 'package:safe_mama/ui/screens/auth/login/login_screen.dart';
+import 'package:safe_mama/ui/screens/auth/signup/complete_registration_screen.dart';
+import 'package:safe_mama/ui/screens/auth/signup/signup_screen.dart';
+import 'package:safe_mama/ui/screens/communities/communities_screen.dart';
+import 'package:safe_mama/ui/screens/communities/detail/community_detail_screen.dart';
+import 'package:safe_mama/ui/screens/content_request/content_request_screen.dart';
+import 'package:safe_mama/ui/screens/courses/course_detail.dart';
+import 'package:safe_mama/ui/screens/courses/courses_screen.dart';
+import 'package:safe_mama/ui/screens/events/event_detail_screen.dart';
+import 'package:safe_mama/ui/screens/forums/create/create_forum_screen.dart';
+import 'package:safe_mama/ui/screens/forums/detail/forum_detail_screen.dart';
+import 'package:safe_mama/ui/screens/forums/forums_screen.dart';
+import 'package:safe_mama/ui/screens/forums/forums_view_model.dart';
+import 'package:safe_mama/ui/screens/home/home_screen.dart';
+import 'package:safe_mama/ui/screens/main/main_scaffold.dart';
+import 'package:safe_mama/ui/screens/notifications/notifications_screen.dart';
+import 'package:safe_mama/ui/screens/onboarding/splash_screen.dart';
+import 'package:safe_mama/ui/screens/publication/my_favorites/my_favorites_screen.dart';
+import 'package:safe_mama/ui/screens/publication/my_publications/my_publications_screen.dart';
+import 'package:safe_mama/ui/screens/publication/detail/publication_detail_screen.dart';
+import 'package:safe_mama/ui/screens/publication/publications_list_screen.dart';
+import 'package:safe_mama/ui/screens/publication/viewer/publication_pdf_viewer.dart';
+import 'package:safe_mama/ui/screens/publication/viewer/web_viewer.dart';
+import 'package:safe_mama/ui/screens/publish/create_publication_screen.dart';
+import 'package:safe_mama/ui/screens/search/search_screen.dart';
+import 'package:safe_mama/ui/screens/success/success_screen.dart';
+import 'package:safe_mama/ui/screens/themes/detail/theme_detail_screen.dart';
+import 'package:safe_mama/utils/navigation/go_route_observer.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 import 'package:provider/provider.dart';
 
 class AppRouter {
@@ -46,6 +48,7 @@ class AppRouter {
 
   final GoRouter _mainRouter = GoRouter(
       initialLocation: "/$home",
+      navigatorKey: getIt<GlobalKey<NavigatorState>>(),
       redirect: (ctx, state) {
         return null;
       },
@@ -429,7 +432,26 @@ class AppRouter {
           name: signUp,
           path: '/$signUp',
           pageBuilder: (context, state) => CustomTransitionPage(
-            child: const SignUpScreen(),
+            child: SignUpScreen(signupState: state.extra as SignupScreenState?),
+            transitionsBuilder: (BuildContext context,
+                    Animation<double> animation,
+                    Animation<double> secondaryAnimation,
+                    Widget child) =>
+                FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+          ),
+        ),
+
+        // COMPLETE REGISTRATION
+        GoRoute(
+          name: completeRegistration,
+          path: '/$completeRegistration',
+          pageBuilder: (context, state) => CustomTransitionPage(
+            child: CompleteRegistrationScreen(
+                completeRegistrationState:
+                    state.extra as CompleteRegistrationScreenState?),
             transitionsBuilder: (BuildContext context,
                     Animation<double> animation,
                     Animation<double> secondaryAnimation,

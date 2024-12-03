@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/models/country_model.dart';
-import 'package:khub_mobile/themes/main_theme.dart';
-import 'package:khub_mobile/ui/elements/countries/countries_list_search.dart';
-import 'package:khub_mobile/ui/elements/custom_button.dart';
-import 'package:khub_mobile/ui/elements/dropdowns/custom_card_dropdown.dart';
-import 'package:khub_mobile/ui/elements/labels.dart';
-import 'package:khub_mobile/ui/elements/spacers.dart';
-import 'package:khub_mobile/ui/elements/textFields/edit_text_field.dart';
-import 'package:khub_mobile/models/option_item_model.dart';
-import 'package:khub_mobile/ui/screens/publish/publish_view_model.dart';
-import 'package:khub_mobile/utils/l10n_extensions.dart';
-import 'package:khub_mobile/utils/validator.dart';
+import 'package:safe_mama/models/country_model.dart';
+import 'package:safe_mama/themes/main_theme.dart';
+import 'package:safe_mama/ui/elements/countries/countries_list_search.dart';
+import 'package:safe_mama/ui/elements/custom_button.dart';
+import 'package:safe_mama/ui/elements/dropdowns/custom_card_dropdown.dart';
+import 'package:safe_mama/ui/elements/labels.dart';
+import 'package:safe_mama/ui/elements/spacers.dart';
+import 'package:safe_mama/ui/elements/textFields/edit_text_field.dart';
+import 'package:safe_mama/models/option_item_model.dart';
+import 'package:safe_mama/ui/screens/publish/publish_view_model.dart';
+import 'package:safe_mama/utils/l10n_extensions.dart';
+import 'package:safe_mama/utils/validator.dart';
 import 'package:provider/provider.dart';
 
 class PublishOneScreen extends StatefulWidget {
@@ -46,74 +46,76 @@ class _PublishOneScreenState extends State<PublishOneScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // double width = MediaQuery.of(context).size.width - 16;
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Stack(
-        children: [
-          SingleChildScrollView(
-            padding: const EdgeInsets.only(bottom: 100),
-            child: Form(
-              key: _publishOneFormKey,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              child: Consumer<PublishViewModel>(
-                  builder: (context, publishProvider, child) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      context.localized.startHere,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                    ySpacer(16),
-                    editTextLabel(context.localized.title),
-                    EditTextField(
-                      textController: _titleController,
-                      validator: (value) {
-                        return Validator.required(value);
-                      },
-                    ),
-                    ySpacer(16),
-                    editTextLabel(context.localized.memberState),
-                    CustomCardDropdown(
-                      containerColor: MainTheme.appColors.onPrimary,
-                      onTap: () {
-                        _showCountries();
-                      },
-                      value: _selectedCountry?.name ?? '',
-                    ),
-                    _errors.isNotEmpty
-                        ? Column(
-                            children: [
-                              ySpacer(14),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10.0),
-                                child: Text(_errors,
-                                    style: TextStyle(
-                                        color: MainTheme.appColors.red400,
-                                        fontSize: 14)),
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(viewInsets: EdgeInsets.zero),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.only(bottom: 20),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Form(
+                  key: _publishOneFormKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Consumer<PublishViewModel>(
+                      builder: (context, publishProvider, child) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.localized.startHere,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                        ySpacer(16),
+                        editTextLabel(context.localized.title),
+                        EditTextField(
+                          textController: _titleController,
+                          validator: (value) {
+                            return Validator.required(value);
+                          },
+                        ),
+                        ySpacer(16),
+                        editTextLabel(context.localized.memberState),
+                        CustomCardDropdown(
+                          containerColor: MainTheme.appColors.onPrimary,
+                          onTap: () {
+                            _showCountries();
+                          },
+                          value: _selectedCountry?.name ?? '',
+                        ),
+                        _errors.isNotEmpty
+                            ? Column(
+                                children: [
+                                  ySpacer(14),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10.0),
+                                    child: Text(_errors,
+                                        style: TextStyle(
+                                            color: MainTheme.appColors.red400,
+                                            fontSize: 14)),
+                                  )
+                                ],
                               )
-                            ],
-                          )
-                        : const SizedBox.shrink(),
-                  ],
-                );
-              }),
+                            : const SizedBox.shrink(),
+                      ],
+                    );
+                  }),
+                ),
+              ),
             ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  CustomButton(
+            SafeArea(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom + 8,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CustomButton(
                       width: MediaQuery.of(context).size.width / 2,
                       onPressed: () {
                         if (_publishOneFormKey.currentState?.validate() ??
@@ -124,8 +126,9 @@ class _PublishOneScreenState extends State<PublishOneScreen> {
                             });
                           } else {
                             viewModel.setRequest(
-                                title: _titleController.text,
-                                country: _selectedCountry);
+                              title: _titleController.text,
+                              country: _selectedCountry,
+                            );
                             widget.onNext();
                           }
                         }
@@ -133,12 +136,14 @@ class _PublishOneScreenState extends State<PublishOneScreen> {
                       child: Text(
                         context.localized.next,
                         style: const TextStyle(color: Colors.white),
-                      )),
-                ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

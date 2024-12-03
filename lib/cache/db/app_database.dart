@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:khub_mobile/cache/db_migrator/migration_config.dart';
-import 'package:khub_mobile/cache/db_migrator/migrator.dart';
+import 'package:safe_mama/cache/db_migrator/migration_config.dart';
+import 'package:safe_mama/cache/db_migrator/migrator.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -24,7 +24,7 @@ final List<String> initialScript = [
   '''
   CREATE TABLE ${AppDatabase.communityTable}(
     id INTEGER PRIMARY KEY NOT NULL,
-    communityName TEXT,
+    name TEXT,
     description TEXT,
     isActive INTEGER
   );
@@ -41,7 +41,8 @@ final List<String> initialScript = [
   '''
    CREATE TABLE ${AppDatabase.preferenceTable}(
     id INTEGER PRIMARY KEY NOT NULL,
-    name TEXT
+    name TEXT,
+    icon TEXT
   );
   '''
 ];
@@ -57,7 +58,9 @@ final List<String> migrations = [
     color TEXT,
     regionId INTEGER,
     longitude REAL,
-    latitude REAL
+    latitude REAL,
+    isAppSupported INTEGER,
+    baseUrl TEXT
   );
   ''',
   '''
@@ -122,12 +125,9 @@ final List<String> migrations = [
     linksActiveColor TEXT,
     spotlightBanner TEXT,
     bannerText TEXT,
-    slogan TEXT
+    slogan TEXT,
+    userId INTEGER
   );
-  ''',
-  '''
-  ALTER TABLE ${AppDatabase.userSettingsTable}
-  ADD COLUMN userId INTEGER;
   ''',
   '''
   CREATE TABLE ${AppDatabase.resourceCategoryTable}(
@@ -144,39 +144,49 @@ final List<String> migrations = [
   );
   ''',
   '''
-  ALTER TABLE ${AppDatabase.communityTable} RENAME COLUMN communityName TO name;
-  ''',
-  '''
-  ALTER TABLE ${AppDatabase.countryTable} 
-  ADD COLUMN isAppSupported INTEGER;
-  ''',
-  '''
-  ALTER TABLE ${AppDatabase.countryTable} 
-  ADD COLUMN baseUrl TEXT;
-  ''',
-  '''
   CREATE TABLE ${AppDatabase.userPreferenceTable}(
     id INTEGER PRIMARY KEY NOT NULL,
     userId INTEGER,
-    preferenceId INTEGER
+    description INTEGER,
+    icon TEXT
   );
   ''',
   '''
-  ALTER TABLE ${AppDatabase.userPreferenceTable}
-  RENAME COLUMN preferenceId TO description;
+  CREATE TABLE ${AppDatabase.eventTable}(
+    id INTEGER PRIMARY KEY NOT NULL,
+    title TEXT,
+    description TEXT,
+    venue TEXT,
+    startDate TEXT,
+    endDate TEXT,
+    organizedBy TEXT,
+    fee REAL,
+    status TEXT,
+    eventLink TEXT,
+    registrationLink TEXT,
+    isOnline INTEGER,
+    contactPerson TEXT,
+    bannerImage TEXT,
+    countryId INTEGER,
+    createdAt TEXT,
+    updatedAt TEXT
+  );
   ''',
   '''
-  ALTER TABLE ${AppDatabase.userPreferenceTable}
-  ADD COLUMN icon TEXT;
-  ''',
+  CREATE TABLE ${AppDatabase.publicationTable}(
+    id INTEGER PRIMARY KEY NOT NULL,
+    title TEXT,
+    description TEXT,
+    imageUrl TEXT,
+    type INTEGER,
+    content TEXT
+  );
   '''
-  ALTER TABLE ${AppDatabase.preferenceTable}
-  ADD COLUMN icon TEXT;
-  ''',
 ];
 
 class AppDatabase {
-  static const String _appName = kReleaseMode ? 'khub.db' : 'khub_dev2.db';
+  static const String _appName =
+      kReleaseMode ? 'safemama.db' : 'safemama_dev.db';
   static const String fileTypeTable = 'file_type_table';
   static const String jobTable = 'job_table';
   static const String communityTable = 'community_table';
@@ -190,7 +200,8 @@ class AppDatabase {
   static const String themeTable = 'theme_table';
   static const String resourceTypeTable = 'resource_type_table';
   static const String resourceCategoryTable = 'resource_category_table';
-
+  static const String eventTable = 'event_table';
+  static const String publicationTable = 'publication_table';
   final config = MigrationConfig(
       initializationScript: initialScript, migrationScripts: migrations);
 

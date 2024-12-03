@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/api/config/config.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/repository/publication_repository.dart';
-import 'package:khub_mobile/models/publication_model.dart';
-import 'package:khub_mobile/ui/providers/safe_notifier.dart';
+import 'package:safe_mama/api/config/env_config.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/repository/publication_repository.dart';
+import 'package:safe_mama/models/publication_model.dart';
+import 'package:safe_mama/ui/providers/safe_notifier.dart';
 
 class MyFavoritesState {
   bool _loading = false;
   String _errorMessage = '';
-  int _currentPage = Config.startPage;
+  int _currentPage = EnvConfig.startPage;
   int _totalPages = 1;
   bool _isEndOfPage = false;
   List<PublicationModel> _publications = [];
@@ -32,7 +32,7 @@ class MyFavoritesViewModel extends ChangeNotifier with SafeNotifier {
   Future<void> fetchPublications() async {
     state._loading = true;
     state._publications = []; // reset
-    state._currentPage = Config.startPage; // reset
+    state._currentPage = EnvConfig.startPage; // reset
     state._isEndOfPage = false; // reset
     safeNotifyListeners();
 

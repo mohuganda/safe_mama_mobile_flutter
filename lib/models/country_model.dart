@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/api/models/country/country_api_model.dart';
+import 'package:safe_mama/api/models/country/country_api_model.dart';
 
 part 'country_model.g.dart';
 

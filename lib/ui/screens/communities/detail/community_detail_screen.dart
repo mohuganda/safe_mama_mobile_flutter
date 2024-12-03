@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/ui/elements/listItems/forum_list_item.dart';
-import 'package:khub_mobile/ui/elements/listItems/publication_item.dart';
-import 'package:khub_mobile/ui/elements/loading_view.dart';
-import 'package:khub_mobile/ui/screens/communities/detail/community_detail_view_model.dart';
-import 'package:khub_mobile/ui/screens/forums/detail/forum_detail_view_model.dart';
-import 'package:khub_mobile/ui/screens/publication/detail/publication_detail_view_model.dart';
+import 'package:safe_mama/ui/elements/listItems/forum_list_item.dart';
+import 'package:safe_mama/ui/elements/listItems/publication_item.dart';
+import 'package:safe_mama/ui/elements/loading_view.dart';
+import 'package:safe_mama/ui/screens/communities/detail/community_detail_view_model.dart';
+import 'package:safe_mama/ui/screens/forums/detail/forum_detail_view_model.dart';
+import 'package:safe_mama/ui/screens/publication/detail/publication_detail_view_model.dart';
 
 import 'dart:async';
-import 'package:khub_mobile/ui/elements/empty_view_element.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/ui/elements/empty_view_element.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 import 'package:provider/provider.dart';
 
 class CommunityDetailModel {

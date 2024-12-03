@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khub_mobile/models/theme_model.dart';
-import 'package:khub_mobile/ui/elements/bottomSheets/themes_bottom_sheet.dart';
-import 'package:khub_mobile/ui/elements/listItems/theme_list_item.dart';
-import 'package:khub_mobile/ui/elements/loading_view.dart';
-import 'package:khub_mobile/ui/screens/themes/theme_view_model.dart';
-import 'package:khub_mobile/utils/navigation/route_names.dart';
+import 'package:safe_mama/models/theme_model.dart';
+import 'package:safe_mama/ui/elements/bottomSheets/themes_bottom_sheet.dart';
+import 'package:safe_mama/ui/elements/listItems/theme_list_item.dart';
+import 'package:safe_mama/ui/elements/loading_view.dart';
+import 'package:safe_mama/ui/screens/themes/theme_view_model.dart';
+import 'package:safe_mama/utils/navigation/route_names.dart';
 import 'package:provider/provider.dart';
 
 class ThemeList extends StatefulWidget {
@@ -37,31 +37,40 @@ class _ThemeListState extends State<ThemeList> {
         return const SizedBox.shrink();
       }
 
-      return ListView.builder(
+      // Get screen width and determine number of columns
+      final screenSize = MediaQuery.of(context).size;
+      final shortestSide = screenSize.shortestSide;
+      final isTablet = shortestSide >= 600; // Material Design tablet breakpoint
+      final crossAxisCount = isTablet ? 5 : 3;
+      final itemWidth =
+          (screenSize.width / crossAxisCount) - 12; // Account for margins
+
+      return GridView.builder(
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          childAspectRatio: itemWidth / (isTablet ? 120.0 : 100.0),
+          crossAxisSpacing: isTablet ? 16.0 : 8.0,
+          mainAxisSpacing: isTablet ? 16.0 : 8.0,
+        ),
         itemCount: provider.state.actionThemeList.length,
         itemBuilder: (context, index) {
           final item = provider.state.actionThemeList[index];
-          final width = MediaQuery.of(context).size.width / 5;
 
-          return Container(
-            width: width,
-            margin: const EdgeInsets.symmetric(horizontal: 6.0),
-            child: ThemeListItem(
-              model: item,
-              width: width,
-              color: Theme.of(context).primaryColor,
-              containerColor: Theme.of(context).primaryColor.withOpacity(0.2),
-              onClick: () {
-                if (item.id == 100000) {
-                  _showThemesBottomSheet(context, provider.state.themeList);
-                } else {
-                  context.pushNamed(themeDetail, extra: item);
-                }
-              },
-            ),
+          return ThemeListItem(
+            model: item,
+            width: itemWidth,
+            height: isTablet ? 120.0 : 100.0,
+            color: Theme.of(context).primaryColor,
+            containerColor: Theme.of(context).primaryColor.withOpacity(0.2),
+            onClick: () {
+              if (item.id == 100000) {
+                _showThemesBottomSheet(context, provider.state.themeList);
+              } else {
+                context.pushNamed(themeDetail, extra: item);
+              }
+            },
           );
         },
       );

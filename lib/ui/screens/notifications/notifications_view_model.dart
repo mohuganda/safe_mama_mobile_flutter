@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:khub_mobile/api/config/config.dart';
-import 'package:khub_mobile/api/models/data_state.dart';
-import 'package:khub_mobile/injection_container.dart';
-import 'package:khub_mobile/models/notification_model.dart';
-import 'package:khub_mobile/repository/notifications_repository.dart';
-import 'package:khub_mobile/ui/providers/safe_notifier.dart';
+import 'package:safe_mama/api/config/env_config.dart';
+import 'package:safe_mama/api/models/data_state.dart';
+import 'package:safe_mama/injection_container.dart';
+import 'package:safe_mama/models/notification_model.dart';
+import 'package:safe_mama/repository/notifications_repository.dart';
+import 'package:safe_mama/ui/providers/safe_notifier.dart';
 
 class NotificationState {
   bool _loading = false;
   final bool _isSuccess = false;
   String _errorMessage = '';
   List<NotificationModel> _notifications = [];
-  int _currentPage = Config.startPage;
+  int _currentPage = EnvConfig.startPage;
   int _totalPages = 1;
   bool _isEndOfPage = false;
 
@@ -33,7 +33,7 @@ class NotificationsViewModel extends ChangeNotifier with SafeNotifier {
   Future<void> fetchNotifications() async {
     state._loading = true;
     state._notifications = []; // reset
-    state._currentPage = Config.startPage; // reset
+    state._currentPage = EnvConfig.startPage; // reset
     state._isEndOfPage = false; // reset
     safeNotifyListeners();
 

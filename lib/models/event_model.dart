@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:khub_mobile/api/models/events/event_api_model.dart';
+import 'package:safe_mama/api/models/events/event_api_model.dart';
 
 part 'event_model.g.dart';
 
@@ -16,7 +16,7 @@ class EventModel {
   String status;
   String? eventLink;
   String registrationLink;
-  bool isOnline;
+  int isOnline;
   String contactPerson;
   String bannerImage;
   int countryId;
@@ -61,7 +61,7 @@ class EventModel {
       status: model.status ?? '',
       eventLink: model.event_link,
       registrationLink: model.registration_link ?? '',
-      isOnline: model.is_online == 1,
+      isOnline: model.is_online ?? 0,
       contactPerson: model.contact_person ?? '',
       bannerImage: model.banner_image ?? '',
       countryId: model.country_id ?? -1,

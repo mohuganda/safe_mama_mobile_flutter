@@ -1,6 +1,6 @@
-# KHub Mobile
+# Safe Mama Mobile
 
-KHub Mobile is a Flutter-based mobile application for [brief description of the app's purpose].
+Safe Mama is a Flutter-based mobile application for [brief description of the app's purpose].
 
 ## Table of Contents
 
@@ -31,8 +31,8 @@ KHub Mobile is a Flutter-based mobile application for [brief description of the 
 
 1. Clone the repository:
    ```
-   git clone <repository>/khub-mobile.git
-   cd khub-mobile
+   git clone <repository>/safe_mama_flutter.git
+   cd safe_mama_flutter
    ```
 
 2. Install dependencies:
@@ -99,7 +99,7 @@ flutter test
 
 ## Contributing
 
-We welcome contributions to KHub Mobile! Please follow these steps:
+We welcome contributions to Safe Mama! Please follow these steps:
 
 1. Fork the repository
 2. Create a new branch: `git checkout -b feature/your-feature-name`

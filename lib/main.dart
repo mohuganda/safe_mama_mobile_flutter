@@ -100,7 +100,7 @@ late AndroidNotificationChannel channel;
 Future<void> setupFlutterNotifications() async {
   channel = const AndroidNotificationChannel(
     'safe_mama_channel',
-    'KHub Mobile Notifications',
+    'Safe Mama Mobile Notifications',
     description: 'This channel is used for important notifications.',
     importance: Importance.high,
   );
@@ -240,7 +240,7 @@ void main() async {
 Future<ThemeData> _loadThemeData() async {
   final repository = getIt<ColorThemeRepository>();
   final primaryColor =
-      await repository.loadPrimaryColor() ?? const Color(0xff348f41);
+      await repository.loadPrimaryColor() ?? const Color(0xFF1E3D93);
   // final secondaryColor =
   // await repository.loadSecondaryColor() ?? const Color(0xff017549);
 
@@ -403,7 +403,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<LocaleProvider>(
         builder: (context, localeProvider, child) => MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: 'KHub',
+          title: 'Safe Mama',
           locale: localeProvider.locale,
           theme: themeData, // MainTheme.defaultTheme,
           localizationsDelegates: AppLocalizations.localizationsDelegates,

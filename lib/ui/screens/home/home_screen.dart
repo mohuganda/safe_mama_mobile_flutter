@@ -220,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (loadingProgress == null) {
                         return child;
                       } else {
-                        return Image.asset('assets/images/logo.png',
+                        return Image.asset('assets/images/logo.jpg',
                             height: logoHeight,
                             width: logoWidth,
                             fit: BoxFit.cover);
@@ -229,14 +229,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     errorBuilder: (BuildContext context, Object exception,
                         StackTrace? stackTrace) {
                       // Display a placeholder image when the remote image fails to load
-                      return Image.asset('assets/images/logo.png',
+                      return Image.asset('assets/images/logo.jpg',
                           height: logoHeight,
                           width: logoWidth,
                           fit: BoxFit.cover);
                     },
                   )
                 : Image.asset(
-                    'assets/images/logo.png',
+                    'assets/images/logo.jpg',
                     width: logoWidth,
                     height: logoHeight,
                     fit: BoxFit.cover,

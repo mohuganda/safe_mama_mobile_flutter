@@ -101,8 +101,7 @@ flutter:
     - assets/images/logo.jpg
     - assets/images/default_user.jpg
     - assets/images/placeholder.jpg
-    - assets/splash_logo.png
-    - assets/splash_logo_android.png
+    - assets/launcher_logo.png
 
     - assets/data/publications.json
     - assets/data/recent_publications.json
@@ -127,7 +126,7 @@ flutter:
 
 flutter_native_splash:
   color: "#fdfdfd"
-  image: assets/images/logo.jpg
+  image: assets/launcher_logo.png
   android: true
   ios: true
   # Optional parameters:

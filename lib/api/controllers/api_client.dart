@@ -8,6 +8,7 @@ import 'package:safe_mama/api/models/responses/EventResponse.dart';
 import 'package:safe_mama/api/models/responses/ForumsResponse.dart';
 import 'package:safe_mama/api/models/responses/NotificationsResponse.dart';
 import 'package:safe_mama/api/models/responses/PublicationsResponse.dart';
+import 'package:safe_mama/api/models/responses/SettingResponse.dart';
 import 'package:safe_mama/api/models/responses/SubThemeResponseModel.dart';
 import 'package:safe_mama/api/models/responses/ThemesResponse.dart';
 import 'package:safe_mama/api/models/responses/UtilityResponse.dart';
@@ -83,6 +84,9 @@ abstract class APIClient {
 
   @GET('/api/lookup/sub_themes')
   Future<SubThemeResponse> getSubThemes();
+
+  @GET('/api/lookup/settings')
+  Future<SettingResponse> getAppSettings();
 
   @GET('/api/lookup/sub_themes')
   Future<SubThemeResponse> getSubThemesByTheme(@Query("theme_id") int themeId);

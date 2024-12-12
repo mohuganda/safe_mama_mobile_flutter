@@ -240,7 +240,7 @@ void main() async {
 Future<ThemeData> _loadThemeData() async {
   final repository = getIt<ColorThemeRepository>();
   final primaryColor =
-      await repository.loadPrimaryColor() ?? const Color(0xFF1E3D93);
+      await repository.loadPrimaryColor() ?? const Color(0xff348f41);
   // final secondaryColor =
   // await repository.loadSecondaryColor() ?? const Color(0xff017549);
 
@@ -352,9 +352,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ProfileViewModel>(
             create: (_) => ProfileViewModel(getIt())),
         ChangeNotifierProvider<MainViewModel>(
-            create: (_) => MainViewModel(getIt(), getIt(), getIt())),
+            create: (_) => MainViewModel(getIt(), getIt(), getIt(), getIt())),
         ChangeNotifierProvider<PublicationDetailViewModel>(
-            create: (_) => PublicationDetailViewModel(getIt(), getIt())),
+            create: (_) =>
+                PublicationDetailViewModel(getIt(), getIt(), getIt())),
         ChangeNotifierProvider<CreateForumViewModel>(
             create: (_) => CreateForumViewModel(forumRepository: getIt())),
         ChangeNotifierProvider<TopSearchesViewModel>(

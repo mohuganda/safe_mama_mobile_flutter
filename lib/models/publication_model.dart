@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:safe_mama/api/models/publication/publication_model.dart';
 import 'package:safe_mama/cache/models/publication_entity.dart';
+import 'package:safe_mama/models/attachment_model.dart';
 import 'package:safe_mama/models/author_model.dart';
 import 'package:safe_mama/models/category_model.dart';
 import 'package:safe_mama/models/sub_theme_model.dart';
@@ -42,10 +43,12 @@ class PublicationModel {
   bool isFavourite;
   bool hasAttachments;
   List<CommentModel>? comments;
+  List<AttachmentModel>? attachments;
   FileTypeModel? fileType;
   AuthorModel? author;
   SubThemeModel? subTheme;
   CategoryModel? category;
+  bool showDisclaimer;
 
   PublicationModel(
       {required this.id,
@@ -75,10 +78,12 @@ class PublicationModel {
       required this.isFavourite,
       required this.hasAttachments,
       required this.comments,
+      required this.attachments,
       required this.fileType,
       required this.author,
       required this.subTheme,
-      required this.category});
+      required this.category,
+      required this.showDisclaimer});
 
   factory PublicationModel.fromApiModel(PublicationApiModel model) {
     return PublicationModel(
@@ -103,6 +108,7 @@ class PublicationModel {
         userId: model.user_id ?? -1,
         isApproved: model.is_approved ?? -1,
         isRejected: model.is_rejected ?? -1,
+        showDisclaimer: model.show_disclaimer == 1,
         theme:
             model.theme != null ? ThemeModel.fromApiModel(model.theme!) : null,
         label: model.label ?? '',
@@ -111,6 +117,9 @@ class PublicationModel {
         hasAttachments: model.has_attachments ?? false,
         comments: model.comments
             ?.map((item) => CommentModel.fromApiModel(item))
+            .toList(),
+        attachments: model.attachments
+            ?.map((item) => AttachmentModel.fromApiModel(item))
             .toList(),
         fileType: model.file_type != null
             ? FileTypeModel.fromApiModel(model.file_type!)

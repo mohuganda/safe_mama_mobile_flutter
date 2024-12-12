@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     ySpacer(100),
                     Image.asset(
-                      'assets/images/logo.jpg',
+                      'assets/images/logo.png',
                       width: 200.0,
                       height: 90.0,
                     ),

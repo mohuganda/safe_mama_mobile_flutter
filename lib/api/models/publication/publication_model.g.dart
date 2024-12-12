@@ -38,6 +38,9 @@ PublicationApiModel _$PublicationApiModelFromJson(Map<String, dynamic> json) =>
       (json['comments'] as List<dynamic>?)
           ?.map((e) => CommentApiModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      (json['attachments'] as List<dynamic>?)
+          ?.map((e) => AttachmentApiModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       json['has_attachments'] as bool?,
       json['file_type'] == null
           ? null
@@ -53,6 +56,7 @@ PublicationApiModel _$PublicationApiModelFromJson(Map<String, dynamic> json) =>
       json['category'] == null
           ? null
           : CategoryApiModel.fromJson(json['category'] as Map<String, dynamic>),
+      (json['show_disclaimer'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PublicationApiModelToJson(
@@ -84,9 +88,11 @@ Map<String, dynamic> _$PublicationApiModelToJson(
       'value': instance.value,
       'is_favourite': instance.is_favourite,
       'comments': instance.comments,
+      'attachments': instance.attachments,
       'has_attachments': instance.has_attachments,
       'file_type': instance.file_type,
       'author': instance.author,
       'sub_theme': instance.sub_theme,
       'category': instance.category,
+      'show_disclaimer': instance.show_disclaimer,
     };

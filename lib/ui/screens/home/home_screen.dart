@@ -50,10 +50,18 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     authViewModel.checkLoginStatus();
+    _getAppSettings();
     _getUtilities();
     _getCurrentUser();
     _getUnreadNotificationCount();
     super.initState();
+  }
+
+  Future<void> _getAppSettings() async {
+    await mainViewModel.fetchAppSettings();
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   Future<void> _getThemes(bool isTablet) async {
@@ -199,8 +207,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   PreferredSizeWidget _appBar(BuildContext context) {
-    const logoWidth = 50.0;
-    const logoHeight = 50.0;
+    const logoWidth = 30.0;
+    const logoHeight = 30.0;
 
     return AppBar(
       backgroundColor: Colors.white,
@@ -220,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (loadingProgress == null) {
                         return child;
                       } else {
-                        return Image.asset('assets/images/logo.jpg',
+                        return Image.asset('assets/images/logo.png',
                             height: logoHeight,
                             width: logoWidth,
                             fit: BoxFit.cover);
@@ -229,18 +237,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     errorBuilder: (BuildContext context, Object exception,
                         StackTrace? stackTrace) {
                       // Display a placeholder image when the remote image fails to load
-                      return Image.asset('assets/images/logo.jpg',
+                      return Image.asset('assets/images/logo.png',
                           height: logoHeight,
                           width: logoWidth,
                           fit: BoxFit.cover);
                     },
                   )
                 : Image.asset(
-                    'assets/images/logo.jpg',
+                    'assets/images/logo.png',
                     width: logoWidth,
                     height: logoHeight,
                     fit: BoxFit.cover,
                   ),
+            xSpacer(8),
             const Text(
               'Safe Mama',
               style: TextStyle(color: Colors.black87),

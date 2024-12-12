@@ -93,7 +93,7 @@ flutter_launcher_icons:
   image_path: "assets/launcher_logo.png"
   min_sdk_android: 23
   adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "assets/launcher_logo.png"
+  adaptive_icon_foreground: "assets/icons/launcher_icon.png"
 
 flutter:
   uses-material-design: true
@@ -101,10 +101,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/logo.jpg
+    - assets/images/logo.png
     - assets/images/default_user.jpg
     - assets/images/placeholder.jpg
     - assets/launcher_logo.png
+    - assets/icons/launcher_icon.png
 
     - assets/data/publications.json
     - assets/data/recent_publications.json
@@ -129,7 +130,7 @@ flutter:
 
 flutter_native_splash:
   color: "#fdfdfd"
-  image: assets/launcher_logo.png
+  image: assets/icons/launcher_icon.png
   android: true
   ios: true
   # Optional parameters:

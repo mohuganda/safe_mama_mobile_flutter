@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:safe_mama/api/models/attachments/attachment_api_model.dart';
 import 'package:safe_mama/api/models/author/author_model.dart';
 import 'package:safe_mama/api/models/category/category_model.dart';
 import 'package:safe_mama/api/models/comment/comment_model.dart';
@@ -35,13 +36,14 @@ class PublicationApiModel {
   String? label;
   String? value;
   bool? is_favourite;
-  // List<dynamic>? approved_comments;
   List<CommentApiModel>? comments;
+  List<AttachmentApiModel>? attachments;
   bool? has_attachments;
   FileTypeApiModel? file_type;
   AuthorApiModel? author;
   SubThemeApiModel? sub_theme;
   CategoryApiModel? category;
+  int? show_disclaimer;
 
   PublicationApiModel(
       this.id,
@@ -70,11 +72,13 @@ class PublicationApiModel {
       this.value,
       this.is_favourite,
       this.comments,
+      this.attachments,
       this.has_attachments,
       this.file_type,
       this.author,
       this.sub_theme,
-      this.category);
+      this.category,
+      this.show_disclaimer);
 
   factory PublicationApiModel.fromJson(Map<String, dynamic> json) =>
       _$PublicationApiModelFromJson(json);

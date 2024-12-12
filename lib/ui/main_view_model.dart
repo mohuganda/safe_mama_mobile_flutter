@@ -6,6 +6,7 @@ import 'package:safe_mama/models/community_model.dart';
 import 'package:safe_mama/models/country_model.dart';
 import 'package:safe_mama/models/preference_model.dart';
 import 'package:safe_mama/models/resource_model.dart';
+import 'package:safe_mama/repository/connection_repository.dart';
 import 'package:safe_mama/repository/notifications_repository.dart';
 import 'package:safe_mama/repository/utility_repository.dart';
 import 'package:safe_mama/ui/providers/safe_notifier.dart';
@@ -30,13 +31,19 @@ class MainViewModel extends ChangeNotifier with SafeNotifier {
   final UtilityRepository utilityRepository;
   final UtilityDatasource utilityDatasource;
   final NotificationRepository notificationRepository;
+  final ConnectionRepository connectionRepository;
 
   MainState state = MainState();
 
   MainState get getState => state;
 
   MainViewModel(this.utilityRepository, this.utilityDatasource,
-      this.notificationRepository);
+      this.notificationRepository, this.connectionRepository);
+
+  Future<bool> _checkInternetConnection() async {
+    final isConnected = await connectionRepository.checkInternetStatus();
+    return isConnected;
+  }
 
   Future<int> getUnreadNotificationCount() async {
     final countState =
@@ -129,6 +136,19 @@ class MainViewModel extends ChangeNotifier with SafeNotifier {
     } on Exception catch (err) {
       LOGGER.e(err);
       return [];
+    }
+  }
+
+  Future<void> fetchAppSettings() async {
+    try {
+      final isConnected = await _checkInternetConnection();
+      if (!isConnected) {
+        return;
+      }
+
+      await utilityRepository.fetchAppSettings();
+    } on Exception catch (err) {
+      LOGGER.e(err);
     }
   }
 

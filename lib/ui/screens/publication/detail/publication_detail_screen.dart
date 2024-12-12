@@ -40,6 +40,7 @@ class _PublicationDetailScreenState extends State<PublicationDetailScreen> {
   void initState() {
     viewModel = Provider.of<PublicationDetailViewModel>(context, listen: false);
     viewModel.getCurrentUser();
+    viewModel.getAppSettings();
     super.initState();
   }
 
@@ -214,6 +215,43 @@ class _PublicationDetailScreenState extends State<PublicationDetailScreen> {
                           style: const TextStyle(color: Colors.blue),
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: publication.showDisclaimer
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.info,
+                                        color: Colors.grey,
+                                        size: 16,
+                                      ),
+                                      xSpacer(8),
+                                      const Text(
+                                        'Disclaimer',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    viewModel.state.appSettings
+                                            ?.contentDisclaimer ??
+                                        '',
+                                    style: const TextStyle(
+                                        color: Colors.grey, fontSize: 12),
+                                  ),
+                                  const Divider(
+                                      thickness: 1, color: Colors.grey),
+                                ],
+                              )
+                            : const SizedBox.shrink(),
+                      ),
                       ySpacer(8),
                       Consumer<AuthViewModel>(
                           builder: (context, provider, child) {
@@ -344,7 +382,9 @@ class _PublicationDetailScreenState extends State<PublicationDetailScreen> {
 
     return InkWell(
       onTap: () {
-        if (fileType != null && fileType.name.isNotEmpty) {
+        if (model.hasAttachments) {
+          _showAttachmentLinks(context, model);
+        } else if (fileType != null && fileType.name.isNotEmpty) {
           model.publication.contains('.pdf')
               ? context.pushNamed(publicationPdfViewer,
                   extra: model.publication)
@@ -540,6 +580,93 @@ class _PublicationDetailScreenState extends State<PublicationDetailScreen> {
     if (authViewModel.state.isLoggedIn) {
       await viewModel.addFavorite(publicationId);
     }
+  }
+
+  void _showAttachmentLinks(BuildContext context, PublicationModel model) {
+    final attachments = model.attachments ?? [];
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.8,
+        ),
+        builder: (BuildContext ctx) {
+          return DraggableScrollableSheet(
+              initialChildSize: 0.5, // Start just below the AppBar
+              minChildSize: 0.2, // Minimum height (half screen)
+              maxChildSize: 0.5, // Maximum height (90% of screen)
+              expand: false,
+              builder: (_, controller) {
+                return Container(
+                    // padding: const EdgeInsets.all(16),
+                    child: Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text('Attachments',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18)),
+                    ),
+                    Expanded(
+                        child: ListView.builder(
+                      itemCount: attachments.length,
+                      itemBuilder: (context, index) {
+                        final item = attachments[index];
+
+                        return InkWell(
+                          onTap: () {
+                            if (item.file.isNotEmpty) {
+                              item.file.contains('.pdf')
+                                  ? context.pushNamed(publicationPdfViewer,
+                                      extra: item.file)
+                                  : context.pushNamed(webViewer,
+                                      extra: WebViewerState(
+                                          linkUrl: item.file,
+                                          title: item.description));
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 4, vertical: 12),
+                            child: Card(
+                                elevation: 0,
+                                color: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.1),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0)),
+                                child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0, vertical: 12.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(FontAwesomeIcons.filePdf,
+                                            size: 16,
+                                            color:
+                                                Theme.of(context).primaryColor),
+                                        xSpacer(12),
+                                        Expanded(
+                                          child: Text(
+                                            item.description,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        )
+                                      ],
+                                    ))),
+                          ),
+                        );
+                      },
+                    ))
+                  ],
+                ));
+              });
+        });
   }
 
   void _showAISummarize(

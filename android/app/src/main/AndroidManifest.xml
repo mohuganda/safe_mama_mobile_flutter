@@ -6,14 +6,14 @@
     <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/> -->
 
     <application
-        android:label="Safe Mama"
+        android:label="Safe Mama Uganda"
         android:name="${applicationName}"
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="Safe Mama"
+            android:label="Safe Mama Uganda"
             android:launchMode="singleTop"
             android:taskAffinity=""
             android:usesCleartextTraffic="true"

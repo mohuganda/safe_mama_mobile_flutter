@@ -1,4 +1,4 @@
-package com.moh.safemama
+package com.safemamaug
 
 import io.flutter.embedding.android.FlutterActivity
 

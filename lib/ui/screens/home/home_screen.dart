@@ -251,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
             xSpacer(8),
             const Text(
-              'Safe Mama',
+              'Safe Mama Uganda',
               style: TextStyle(color: Colors.black87),
             )
           ],

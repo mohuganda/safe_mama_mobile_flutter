@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>800355033239-nkriht63v5hjchjl2m3dpf2h4a8cbik0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.800355033239-nkriht63v5hjchjl2m3dpf2h4a8cbik0</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>800355033239-0m852ljn4cgsnl4f90777koaekmm2dmn.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAlbBsV6qzRhQ3WY2IMqTR0MeU6o1SpMd8</string>
 	<key>GCM_SENDER_ID</key>
@@ -9,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.moh.safemama</string>
+	<string>com.safemamaug</string>
 	<key>PROJECT_ID</key>
 	<string>africa-cdc-2c237</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:800355033239:ios:ee67a67e7f27bd64dac9d2</string>
+	<string>1:800355033239:ios:5bf1558d787a3f68dac9d2</string>
 	<key>DATABASE_URL</key>
 	<string>https://africa-cdc-2c237-default-rtdb.firebaseio.com</string>
 </dict>

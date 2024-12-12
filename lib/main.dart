@@ -404,7 +404,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<LocaleProvider>(
         builder: (context, localeProvider, child) => MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: 'Safe Mama',
+          title: 'Safe Mama Uganda',
           locale: localeProvider.locale,
           theme: themeData, // MainTheme.defaultTheme,
           localizationsDelegates: AppLocalizations.localizationsDelegates,

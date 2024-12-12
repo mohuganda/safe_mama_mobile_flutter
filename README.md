@@ -1,4 +1,4 @@
-# Safe Mama Mobile
+# Safe Mama Uganda Mobile
 
 Safe Mama is a Flutter-based mobile application for [brief description of the app's purpose].
 

@@ -10,8 +10,8 @@ class EnvConfig {
 
   static const startPage = 1;
   static const pageSize = 10;
-  static const privacyPolicyUrl = 'https://khub.africacdc.org/privacy';
-  static const faqsUrl = 'https://khub.africacdc.org/faqs';
+  static const privacyPolicyUrl = 'https://safemama.health.go.ug/privacy';
+  static const faqsUrl = 'https://safemama.health.go.ug/faqs';
 
   static String _getEnvVar(String key) {
     final value = dotenv.env[key];

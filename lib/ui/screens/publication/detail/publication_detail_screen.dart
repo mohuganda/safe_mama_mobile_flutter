@@ -524,25 +524,25 @@ class _PublicationDetailScreenState extends State<PublicationDetailScreen> {
             Text('${comments?.length} ${context.localized.comments}')
           ],
         ),
-        InkWell(
-          onTap: () {
-            _likePublication(model.id);
-          },
-          child: Row(
-            children: [
-              Icon(
-                model.isFavourite
-                    ? Icons.favorite_rounded
-                    : Icons.favorite_outline,
-                size: 18,
-              ),
-              xSpacer(4.0),
-              Text(model.isFavourite
-                  ? context.localized.unlike
-                  : context.localized.like)
-            ],
-          ),
-        )
+        // InkWell(
+        //   onTap: () {
+        //     _likePublication(model.id);
+        //   },
+        //   child: Row(
+        //     children: [
+        //       Icon(
+        //         model.isFavourite
+        //             ? Icons.favorite_rounded
+        //             : Icons.favorite_outline,
+        //         size: 18,
+        //       ),
+        //       xSpacer(4.0),
+        //       Text(model.isFavourite
+        //           ? context.localized.unlike
+        //           : context.localized.like)
+        //     ],
+        //   ),
+        // )
       ],
     );
   }

@@ -89,26 +89,26 @@ class _PublicationsListScreenState extends State<PublicationsListScreen> {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            final authViewModel =
-                Provider.of<AuthViewModel>(context, listen: false);
-            if (authViewModel.state.isLoggedIn) {
-              context.pushNamed(publish);
-            } else {
-              context.pushNamed(login);
-            }
-          },
-          tooltip: context.localized.newPublication,
-          backgroundColor: Theme.of(context).primaryColor,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50.0),
-          ),
-          heroTag: 'uniqueTag',
-          elevation: 6.0,
-          child: const Icon(Icons.add),
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     final authViewModel =
+        //         Provider.of<AuthViewModel>(context, listen: false);
+        //     if (authViewModel.state.isLoggedIn) {
+        //       context.pushNamed(publish);
+        //     } else {
+        //       context.pushNamed(login);
+        //     }
+        //   },
+        //   tooltip: context.localized.newPublication,
+        //   backgroundColor: Theme.of(context).primaryColor,
+        //   foregroundColor: Colors.white,
+        //   shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.circular(50.0),
+        //   ),
+        //   heroTag: 'uniqueTag',
+        //   elevation: 6.0,
+        //   child: const Icon(Icons.add),
+        // ),
         body: Container(
             padding: const EdgeInsets.all(0),
             child: Consumer<PublicationListViewModel>(
